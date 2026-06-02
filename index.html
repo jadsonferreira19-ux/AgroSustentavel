@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Agrotóxico Sustentável | Inovação Verde</title>
+    <title>Agrotóxico Sustentável | Quizz + Inovação Verde</title>
     <!-- Google Fonts + Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -319,7 +319,7 @@
             border-radius: 4px;
         }
 
-        /* Galeria com imagens temáticas (banco de imagens) */
+        /* Galeria com imagens temáticas (Unsplash - confiáveis) */
         .galeria-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -364,11 +364,6 @@
             margin-bottom: 6px;
         }
 
-        .legenda p {
-            font-size: 0.9rem;
-            color: #3c5e3f;
-        }
-
         .projetos {
             background-color: #eef7ea;
             border-radius: 48px;
@@ -381,7 +376,6 @@
             padding: 24px;
             margin-bottom: 24px;
             box-shadow: 0 6px 14px rgba(0,0,0,0.05);
-            transition: 0.2s;
         }
 
         .impacto-stats {
@@ -409,44 +403,92 @@
             color: #1a732f;
         }
 
-        .form-contato {
+        /* ========== QUIZZ ESTILIZADO ========== */
+        .quizz-container {
             background: white;
-            border-radius: 40px;
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            max-width: 700px;
-            margin: 0 auto;
+            border-radius: 48px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+            max-width: 900px;
+            margin: 20px auto 0;
+            border: 1px solid #d9efcf;
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        .quizz-pergunta {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #124d22;
+            margin-bottom: 28px;
+            text-align: center;
         }
 
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
+        .quizz-opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .opcao {
+            background: #f5fef2;
+            border: 2px solid #cce2c4;
             border-radius: 60px;
-            border: 1px solid #cce2c4;
-            font-family: inherit;
+            padding: 14px 22px;
             font-size: 1rem;
-            background: #fefef7;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .form-group textarea {
-            border-radius: 28px;
-            resize: vertical;
+        .opcao:hover {
+            background: #e3f3db;
+            border-color: #6bbf4a;
+            transform: translateX(6px);
         }
 
-        .btn-submit {
-            background: #1f6e2f;
+        .opcao.selected {
+            background: #c8e6c0;
+            border-color: #2b7a3b;
+            color: #1a4d24;
+            font-weight: 700;
+        }
+
+        .quizz-feedback {
+            background: #eef3ea;
+            border-radius: 32px;
+            padding: 18px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .btn-next {
+            background-color: #1f6e2f;
             color: white;
             border: none;
-            padding: 12px 28px;
+            padding: 14px 28px;
             border-radius: 60px;
             font-weight: bold;
-            cursor: pointer;
-            width: 100%;
             font-size: 1rem;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            width: 220px;
+        }
+
+        .btn-next:hover {
+            background-color: #0e551e;
+        }
+
+        .resultado-final {
+            text-align: center;
+            background: #e0f2da;
+            border-radius: 40px;
+            padding: 30px;
+            margin-top: 20px;
         }
 
         footer {
@@ -479,15 +521,15 @@
             .splash-card h1 {
                 font-size: 1.8rem;
             }
-            .galeria-grid {
-                grid-template-columns: 1fr;
+            .quizz-pergunta {
+                font-size: 1.3rem;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- PÁGINA DE ENTRADA: AGROTÓXICOS SUSTENTÁVEIS -->
+<!-- PÁGINA DE ENTRADA -->
 <div id="splashScreen" class="splash-overlay">
     <div class="splash-card">
         <i class="fas fa-seedling"></i>
@@ -501,7 +543,7 @@
     </div>
 </div>
 
-<!-- SITE PRINCIPAL RENOMEADO -->
+<!-- SITE PRINCIPAL -->
 <div id="mainSite" class="main-site">
     <header class="header">
         <div class="container nav-bar">
@@ -514,7 +556,7 @@
                 <a href="#galeria">Galeria</a>
                 <a href="#projetos">Tecnologias</a>
                 <a href="#impacto">Impacto</a>
-                <a href="#contato">Participe</a>
+                <a href="#quizz">Quizz</a>
             </div>
         </div>
     </header>
@@ -528,7 +570,7 @@
                         <p>Biopesticidas, feromônios, extratos vegetais e microrganismos: tecnologias que protegem as lavouras sem agredir o solo, a água e a saúde das famílias agricultoras.</p>
                         <div class="btn-group">
                             <a href="#galeria" class="btn btn-primary"><i class="fas fa-seedling"></i> Soluções verdes</a>
-                            <a href="#contato" class="btn btn-outline"><i class="fas fa-chalkboard-user"></i> Quero aplicar</a>
+                            <a href="#quizz" class="btn btn-outline"><i class="fas fa-question-circle"></i> Teste seus conhecimentos</a>
                         </div>
                     </div>
                     <div class="hero-img">
@@ -538,16 +580,14 @@
             </div>
         </section>
 
-        <!-- GALERIA COM IMAGENS DE BANCO DE IMAGENS (CONCEITO SUSTENTÁVEL/AGROTÓXICO VERDE) -->
+        <!-- GALERIA COM IMAGENS FUNCIONAIS (UNSPLASH) -->
         <div class="container" id="galeria">
             <div class="section-title">📸 Tecnologias de baixo impacto – na prática</div>
-            <div class="galeria-grid" id="galeriaDinamica">
-                <!-- As imagens serão inseridas via JS com fontes gratuitas e relevantes -->
-            </div>
+            <div class="galeria-grid" id="galeriaDinamica"></div>
             <p style="text-align:center; margin-top:10px;">💚 Cada imagem mostra alternativas sustentáveis ao uso convencional de agrotóxicos.</p>
         </div>
 
-        <!-- Projetos e inovações ecológicas -->
+        <!-- Projetos e inovações -->
         <div class="container projetos" id="projetos">
             <div class="section-title">🧬 Alternativas ecológicas em ação</div>
             <div class="projeto-item">
@@ -574,17 +614,11 @@
             </div>
         </div>
 
-        <!-- Formulário de engajamento -->
-        <div class="container" id="contato">
-            <div class="section-title">🤝 Seja parte dessa mudança</div>
-            <div class="form-contato">
-                <form id="formSustentabilidade">
-                    <div class="form-group"><input type="text" id="nome" placeholder="Seu nome completo" required></div>
-                    <div class="form-group"><input type="email" id="email" placeholder="Seu e-mail" required></div>
-                    <div class="form-group"><textarea rows="3" placeholder="Conte como você ou sua comunidade podem adotar práticas com menos agrotóxicos..."></textarea></div>
-                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Quero saber mais</button>
-                </form>
-                <p id="formFeedback" style="margin-top: 18px; text-align: center;"></p>
+        <!-- ========== QUIZZ INTERATIVO ========== -->
+        <div class="container" id="quizz">
+            <div class="section-title">🌱 Quizz: Você sabe o que são agrotóxicos sustentáveis?</div>
+            <div class="quizz-container" id="quizzContainer">
+                <!-- perguntas serão injetadas via js -->
             </div>
         </div>
     </main>
@@ -601,8 +635,7 @@
 </div>
 
 <script>
-    // ========== GALERIA COM IMAGENS LIVRES (BANCO DE IMAGENS - UNSPLASH + PEXELS STYLE) ==========
-    // Todas as imagens são de domínio público/creative commons e retratam conceito de agrotóxico sustentável, biopesticidas, agricultura ecológica.
+    // ========== GALERIA COM IMAGENS LIVRES (UNSPLASH) - todas funcionais e com conceito ==========
     const imagens = [
         {
             url: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=600&auto=format",
@@ -612,7 +645,7 @@
         {
             url: "https://images.unsplash.com/photo-1586771107445-d3ca888129ce?w=600&auto=format",
             titulo: "Extratos vegetais e bioinsumos",
-            descricao: "Pesquisas com plantas medicinais criam defensivos naturais eficazes."
+            descricao: "Pesquisas com plantas medicinais criam defensivos naturais."
         },
         {
             url: "https://images.unsplash.com/photo-1592982537447-6f2a6a0a7b1e?w=600&auto=format",
@@ -654,7 +687,107 @@
         container.innerHTML = html;
     }
 
-    // ========== LÓGICA DA PÁGINA DE ENTRADA ==========
+    // ========== DADOS DO QUIZZ ==========
+    const perguntas = [
+        {
+            texto: "O que são agrotóxicos sustentáveis?",
+            opcoes: ["Produtos químicos sintéticos de alta eficiência", "Alternativas de baixo impacto, como biopesticidas e controle biológico", "Fertilizantes nitrogenados", "Transgênicos resistentes a pragas"],
+            correta: 1
+        },
+        {
+            texto: "Qual destes é um exemplo de controle biológico de pragas?",
+            opcoes: ["Uso de glifosato", "Queimadas controladas", "Liberação de joaninhas para controlar pulgões", "Irrigação por aspersão"],
+            correta: 2
+        },
+        {
+            texto: "Qual o principal benefício dos bioinsumos em comparação aos agrotóxicos convencionais?",
+            opcoes: ["Maior toxicidade ao solo", "Degradação mais rápida e menor impacto ambiental", "Aumento da acidez da água", "Somente uso industrial"],
+            correta: 1
+        },
+        {
+            texto: "O que a agricultura regenerativa promove?",
+            opcoes: ["Dependência de defensivos químicos", "Saúde do solo e biodiversidade, reduzindo necessidade de venenos", "Monocultura extensiva", "Desmatamento controlado"],
+            correta: 1
+        }
+    ];
+
+    let currentQuestion = 0;
+    let respostasUsuario = [];
+    let quizzContainer = document.getElementById('quizzContainer');
+
+    function renderizarQuizz() {
+        if (currentQuestion < perguntas.length) {
+            const q = perguntas[currentQuestion];
+            let opcoesHtml = '';
+            q.opcoes.forEach((opcao, idx) => {
+                const isSelected = (respostasUsuario[currentQuestion] === idx);
+                opcoesHtml += `
+                    <div class="opcao ${isSelected ? 'selected' : ''}" data-opcao="${idx}">
+                        <i class="fas fa-check-circle" style="color: ${isSelected ? '#2b7a3b' : '#b1cfaa'}"></i> ${opcao}
+                    </div>
+                `;
+            });
+            const html = `
+                <div class="quizz-pergunta">${currentQuestion+1}. ${q.texto}</div>
+                <div class="quizz-opcoes" id="opcoesList">
+                    ${opcoesHtml}
+                </div>
+                <button class="btn-next" id="nextBtn">${currentQuestion === perguntas.length-1 ? 'Ver resultado' : 'Próxima pergunta'} <i class="fas fa-arrow-right"></i></button>
+            `;
+            quizzContainer.innerHTML = html;
+            document.querySelectorAll('.opcao').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    const opcaoVal = parseInt(el.dataset.opcao);
+                    respostasUsuario[currentQuestion] = opcaoVal;
+                    renderizarQuizz();  // re-render para marcar a opção selecionada
+                });
+            });
+            document.getElementById('nextBtn').addEventListener('click', () => {
+                if (respostasUsuario[currentQuestion] === undefined) {
+                    alert("Por favor, escolha uma alternativa antes de continuar.");
+                    return;
+                }
+                if (currentQuestion + 1 < perguntas.length) {
+                    currentQuestion++;
+                    renderizarQuizz();
+                } else {
+                    finalizarQuizz();
+                }
+            });
+        } else {
+            finalizarQuizz();
+        }
+    }
+
+    function finalizarQuizz() {
+        let acertos = 0;
+        perguntas.forEach((p, idx) => {
+            if (respostasUsuario[idx] === p.correta) acertos++;
+        });
+        const percentual = (acertos / perguntas.length) * 100;
+        let mensagem = '';
+        if (percentual === 100) mensagem = '🌟 Perfeito! Você é um expert em agrotóxicos sustentáveis!';
+        else if (percentual >= 75) mensagem = '🌱 Muito bom! Continue divulgando práticas verdes.';
+        else if (percentual >= 50) mensagem = '📘 Bom, mas pode aprender mais. Explore o site!';
+        else mensagem = '🌿 Que tal revisar as informações sobre controle biológico e bioinsumos?';
+        
+        const htmlResultado = `
+            <div class="resultado-final">
+                <i class="fas fa-trophy" style="font-size: 3rem; color:#e6b422;"></i>
+                <h2>Você acertou ${acertos} de ${perguntas.length}</h2>
+                <p style="font-size: 1.2rem; margin: 15px 0;">${mensagem}</p>
+                <button id="refazerQuizz" class="btn-primary" style="border:none; padding: 10px 25px; border-radius: 40px; cursor:pointer;"><i class="fas fa-redo-alt"></i> Refazer quizz</button>
+            </div>
+        `;
+        quizzContainer.innerHTML = htmlResultado;
+        document.getElementById('refazerQuizz').addEventListener('click', () => {
+            currentQuestion = 0;
+            respostasUsuario = [];
+            renderizarQuizz();
+        });
+    }
+
+    // ========== SPLASH + INICIALIZAÇÃO ==========
     const splash = document.getElementById('splashScreen');
     const mainSite = document.getElementById('mainSite');
     const btnEntrar = document.getElementById('btnEntrar');
@@ -669,69 +802,30 @@
         }, 700);
     }
 
-    if (btnEntrar) {
-        btnEntrar.addEventListener('click', entrarNoSite);
-    }
-
+    if (btnEntrar) btnEntrar.addEventListener('click', entrarNoSite);
     if (btnSaibaMais) {
-        btnSaibaMais.addEventListener('click', function() {
+        btnSaibaMais.addEventListener('click', () => {
             entrarNoSite();
             setTimeout(() => {
                 const projetosSection = document.getElementById('projetos');
-                if (projetosSection) {
-                    projetosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (projetosSection) projetosSection.scrollIntoView({ behavior: 'smooth' });
             }, 800);
         });
     }
 
-    // Impede scroll inicial
     document.body.style.overflow = 'hidden';
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.attributeName === 'class' && splash.classList.contains('hide-splash')) {
-                document.body.style.overflow = 'auto';
-            }
-        });
+    const observer = new MutationObserver(() => {
+        if (splash.classList.contains('hide-splash')) document.body.style.overflow = 'auto';
     });
     observer.observe(splash, { attributes: true });
 
-    // Inicializa a galeria
     document.addEventListener("DOMContentLoaded", () => {
         renderizarGaleria();
-        if (!splash.classList.contains('hide-splash')) {
-            document.body.style.overflow = 'hidden';
-        }
+        renderizarQuizz();
+        if (!splash.classList.contains('hide-splash')) document.body.style.overflow = 'hidden';
     });
 
-    // Formulário de contato
-    const form = document.getElementById('formSustentabilidade');
-    const feedback = document.getElementById('formFeedback');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nome = document.getElementById('nome').value.trim();
-            const email = document.getElementById('email').value.trim();
-            if (!nome || !email) {
-                feedback.innerHTML = "❌ Preencha nome e e-mail.";
-                feedback.style.color = "#b13e3e";
-                setTimeout(() => feedback.innerHTML = "", 3000);
-                return;
-            }
-            if (!email.includes('@')) {
-                feedback.innerHTML = "📧 E-mail inválido.";
-                feedback.style.color = "#b15c2e";
-                setTimeout(() => feedback.innerHTML = "", 3000);
-                return;
-            }
-            feedback.innerHTML = `🌿 Obrigado, ${nome}! Juntos vamos expandir o uso de agrotóxicos sustentáveis. 🍃`;
-            feedback.style.color = "#1f6e2f";
-            form.reset();
-            setTimeout(() => feedback.innerHTML = "", 5000);
-        });
-    }
-
-    // Navegação suave interna
+    // Navegação suave
     document.querySelectorAll('.nav-links a, .btn-primary, .btn-outline').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const hash = this.getAttribute('href');

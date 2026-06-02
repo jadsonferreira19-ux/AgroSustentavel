@@ -3,719 +3,540 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>🌿 Agrinho 2026 - Agro forte, futuro sustentável</title>
+    <title>Agrinho 2025 | Galeria – Tecnologia e Sustentabilidade</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s, box-shadow 0.2s;
         }
 
         body {
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
-            background: linear-gradient(145deg, #f5fcf0 0%, #eaf5e2 100%);
-            color: #1c3e2a;
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fef7;
+            color: #1a2e1f;
             line-height: 1.5;
-            padding: 1.5rem;
-            min-height: 100vh;
-        }
-
-        /* TEMA ESCURO */
-        body.dark {
-            background: linear-gradient(145deg, #0a1f15 0%, #0e2a1a 100%);
-            color: #e2f0da;
-        }
-
-        body.dark .card,
-        body.dark .quiz-panel,
-        body.dark .info-card,
-        body.dark .theme-btn,
-        body.dark .option-btn,
-        body.dark .nav-btn,
-        body.dark .restart-btn,
-        body.dark footer,
-        body.dark .question-card,
-        body.dark .result-box {
-            background-color: #152f22;
-            color: #e2f0da;
-            border-color: #2c6a42;
-        }
-
-        body.dark .option-btn {
-            background: #1f4432;
-            border-color: #3c7a55;
-        }
-
-        body.dark .option-btn:hover {
-            background: #2c5e42;
-        }
-
-        body.dark .option-btn.selected {
-            background: #2d7a50;
-            border-color: #9bdfa3;
-            box-shadow: 0 0 0 2px #6fbf7a;
-        }
-
-        body.dark .nav-btn {
-            background: #2d6b48;
-            color: white;
-        }
-
-        body.dark .nav-btn:hover {
-            background: #3f8a5e;
-        }
-
-        body.dark .highlight {
-            color: #c6ffb0;
+            scroll-behavior: smooth;
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1280px;
             margin: 0 auto;
+            padding: 0 24px;
         }
 
-        /* HEADER ANIMADO */
+        /* Header */
         .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            animation: fadeInDown 0.8s ease-out;
+            background: linear-gradient(135deg, #d4e9d0 0%, #a9c9a3 100%);
+            padding: 20px 0 12px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .header h1 {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #2b6e3c, #7cb342, #4caf50);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
             letter-spacing: -0.5px;
-            animation: shimmer 3s infinite;
+            color: #1f4f2b;
         }
 
-        body.dark .header h1 {
-            background: linear-gradient(135deg, #a8e6a0, #7cb342, #c8ffb0);
-            background-clip: text;
-            -webkit-background-clip: text;
-        }
-
-        .subhead {
-            font-size: 1.15rem;
+        .logo p {
+            font-size: 0.8rem;
             font-weight: 500;
-            margin-top: 0.5rem;
-            color: #3e6b3a;
+            color: #2a5e2e;
         }
 
-        body.dark .subhead {
-            color: #c0e0b0;
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
         }
 
-        .instructor-badge {
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1f3b24;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #095e1a;
+            border-bottom: 2px solid #2b7a3b;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(112deg, #e1f3da 0%, #c8e6c0 100%);
+            padding: 70px 0 70px;
+            border-radius: 0 0 48px 48px;
+            margin-bottom: 40px;
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1c4d27;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text .highlight {
+            color: #217a32;
+            border-left: 5px solid #3ba84a;
+            padding-left: 18px;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #2b482f;
+            margin-bottom: 28px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background: #ffffffcc;
-            backdrop-filter: blur(8px);
-            padding: 0.6rem 1.8rem;
-            border-radius: 60px;
-            margin-top: 1rem;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-            font-weight: 600;
+            gap: 10px;
         }
 
-        body.dark .instructor-badge {
-            background: #1e3a2ccc;
-        }
-
-        .avatar-icon {
-            font-size: 2rem;
-            animation: gentleBounce 2s infinite;
-        }
-
-        /* GRADE PRINCIPAL */
-        .main-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        /* CARD LATERAL (informações) */
-        .info-card {
-            flex: 1.1;
-            min-width: 260px;
-            background: white;
-            border-radius: 2rem;
-            padding: 1.8rem;
-            box-shadow: 0 15px 35px rgba(0, 32, 0, 0.1);
-            border: 1px solid #cfe2c1;
-        }
-
-        .section-title {
-            font-size: 1.6rem;
-            margin: 1rem 0 0.8rem 0;
-            border-left: 6px solid #6aab4d;
-            padding-left: 0.8rem;
-        }
-
-        .positive-list, .negative-list {
-            list-style: none;
-            margin-top: 0.5rem;
-        }
-
-        .positive-list li, .negative-list li {
-            margin: 0.7rem 0;
-            padding-left: 1.8rem;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .positive-list li::before {
-            content: "🌱";
-            position: absolute;
-            left: 0;
-        }
-
-        .negative-list li::before {
-            content: "⚠️";
-            position: absolute;
-            left: 0;
-        }
-
-        .sustainable-tip {
-            background: #eef5e7;
-            border-radius: 1.5rem;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        body.dark .sustainable-tip {
-            background: #1f3d2c;
-        }
-
-        /* QUIZ PANEL */
-        .quiz-panel {
-            flex: 1.6;
-            min-width: 300px;
-            background: white;
-            border-radius: 2rem;
-            padding: 1.8rem;
-            box-shadow: 0 15px 35px rgba(0, 32, 0, 0.1);
-            border: 1px solid #cfe2c1;
-        }
-
-        .question-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .progress-badge {
-            background: #daefca;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        body.dark .progress-badge {
-            background: #2c573e;
-        }
-
-        .question-text {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin: 1rem 0 1.5rem;
-            line-height: 1.3;
-        }
-
-        .options-area {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 1.5rem 0;
-        }
-
-        .option-btn {
-            background: #f9fff5;
-            border: 2px solid #c2dfae;
-            border-radius: 50px;
-            padding: 12px 20px;
-            font-size: 1rem;
-            text-align: left;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.2s;
-            font-family: inherit;
-            color: inherit;
-        }
-
-        .option-btn:hover {
-            transform: translateX(6px);
-            background: #ecf8e3;
-            border-color: #8bc34a;
-        }
-
-        .option-btn.selected {
-            background: #c8e6b5;
-            border-color: #448a2c;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .feedback-area {
-            background: #eff7e8;
-            border-radius: 28px;
-            padding: 12px 18px;
-            margin: 18px 0;
-            font-size: 0.95rem;
-            border-left: 5px solid #6aa84f;
-        }
-
-        body.dark .feedback-area {
-            background: #1e3d2c;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 1rem;
-        }
-
-        .nav-btn, .restart-btn {
-            background: #458744;
-            border: none;
+        .btn-primary {
+            background-color: #1f6e2f;
             color: white;
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.9rem;
+            border: none;
         }
 
-        .nav-btn:hover, .restart-btn:hover {
-            background: #2e6a3a;
+        .btn-primary:hover {
+            background-color: #0e551e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1f6e2f;
+            color: #1f6e2f;
+        }
+
+        .btn-outline:hover {
+            background: #1f6e2f20;
             transform: translateY(-2px);
         }
 
-        .restart-btn {
-            background: #e68a2e;
-        }
-
-        .restart-btn:hover {
-            background: #cc701b;
-        }
-
-        /* RESULTADO */
-        .result-box {
+        .hero-img {
+            flex: 0.9;
             text-align: center;
-            padding: 1rem;
         }
 
-        .score-circle {
-            font-size: 3rem;
+        .hero-img img {
+            max-width: 100%;
+            width: 380px;
+            border-radius: 30px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+        }
+
+        section {
+            margin: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
             font-weight: 800;
-            background: #d9f0ca;
-            display: inline-block;
-            width: 120px;
-            height: 120px;
-            line-height: 120px;
+            color: #1b4b27;
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background: #54b46b;
+            display: block;
+            margin: 12px auto 0;
+            border-radius: 4px;
+        }
+
+        /* ===== GALERIA DE IMAGENS (SUAS 5 FOTOS) ===== */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card-imagem {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card-imagem:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 40px rgba(34, 139, 34, 0.15);
+        }
+
+        .card-imagem img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card-imagem:hover img {
+            transform: scale(1.03);
+        }
+
+        .legenda {
+            padding: 18px 16px 22px;
+            text-align: center;
+            background: white;
+        }
+
+        .legenda h3 {
+            font-size: 1.2rem;
+            color: #1f6e2f;
+            margin-bottom: 6px;
+        }
+
+        .legenda p {
+            font-size: 0.9rem;
+            color: #3c5e3f;
+        }
+
+        /* outros componentes mantidos */
+        .projetos {
+            background-color: #eef7ea;
+            border-radius: 48px;
+            padding: 50px 30px;
+        }
+
+        .impacto-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            padding: 25px 20px;
+            border-radius: 48px;
+            width: 200px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 1px solid #bcddae;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1a732f;
+        }
+
+        .form-contato {
+            background: white;
+            border-radius: 40px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
             border-radius: 60px;
-            margin: 1rem 0;
+            border: 1px solid #cce2c4;
+            font-family: inherit;
+            font-size: 1rem;
+            background: #fefef7;
         }
 
-        body.dark .score-circle {
-            background: #2f6444;
+        .form-group textarea {
+            border-radius: 28px;
         }
 
-        .details-list {
-            max-height: 380px;
-            overflow-y: auto;
-            text-align: left;
-            margin: 1rem 0;
-            padding: 0.5rem;
+        .btn-submit {
+            background: #1f6e2f;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
         }
 
         footer {
-            margin-top: 3rem;
+            background: #1c3b21;
+            color: #cfebcd;
+            padding: 40px 0 20px;
+            border-radius: 32px 32px 0 0;
+            margin-top: 70px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 28px;
+            margin-bottom: 30px;
+        }
+
+        .copy {
             text-align: center;
-            padding-top: 1.5rem;
-            border-top: 2px dashed #bed6ab;
+            border-top: 1px solid #2b5933;
+            padding-top: 24px;
             font-size: 0.85rem;
         }
 
-        /* ANIMAÇÕES */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes shimmer {
-            0% { opacity: 0.9; text-shadow: 0 0 0px #b9f6a0; }
-            100% { opacity: 1; text-shadow: 0 0 6px #c8ffa0; }
-        }
-
-        @keyframes gentleBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-
-        /* BOTAO TEMA */
-        .theme-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #fff;
-            border: none;
-            border-radius: 60px;
-            padding: 12px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 999;
-            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-
         @media (max-width: 780px) {
-            body { padding: 1rem; }
-            .header h1 { font-size: 2rem; }
-            .question-text { font-size: 1.25rem; }
-            .section-title { font-size: 1.3rem; }
-        }
-
-        .highlight-green {
-            font-weight: bold;
-            color: #2e7d32;
-        }
-        body.dark .highlight-green {
-            color: #b9f6b0;
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- CABEÇALHO FIÀS IMAGENS -->
-    <div class="header">
-        <h1>🌾 AGRINHO 2026</h1>
-        <div class="subhead">Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente.</div>
-        <div class="instructor-badge">
-            <span class="avatar-icon">🧑‍🏫🌿</span>
-            <span><strong>Instrutor Agrinho</strong> · Guiando você por um campo mais produtivo e sustentável!</span>
-        </div>
-    </div>
-
-    <div class="main-grid">
-        <!-- PAINEL ESQUERDO: INFORMAÇÕES (TOTALMENTE FIEL ÀS IMAGENS) -->
-        <div class="info-card">
-            <div class="section-title">🌱 O que são agrotóxicos?</div>
-            <p style="margin-bottom: 1rem;">Produtos utilizados para proteger plantações de pragas, doenças e plantas daninhas, ajudando a garantir a produção de alimentos.</p>
-            
-            <div class="section-title" style="margin-top: 0.5rem;">✅ Pontos positivos</div>
-            <ul class="positive-list">
-                <li>Aumentam a produção de alimentos.</li>
-                <li>Protegem plantações de pragas e doenças.</li>
-                <li>Reduzem prejuízos no campo.</li>
-                <li>Ajudam no abastecimento de comida para a população.</li>
-            </ul>
-            
-            <div class="section-title" style="margin-top: 1rem;">⚠️ Pontos negativos</div>
-            <ul class="negative-list">
-                <li>Uso excessivo pode contaminar rios e solos.</li>
-                <li>Pode prejudicar animais, plantas e polinizadores.</li>
-                <li>Alguns produtos causam problemas à saúde humana.</li>
-                <li>Desequilíbrio ambiental pode afetar o futuro do planeta.</li>
-            </ul>
-            
-            <div class="sustainable-tip">
-                <strong>🌍 O caminho sustentável</strong><br>
-                • Usar agrotóxicos com responsabilidade.<br>
-                • Buscar alternativas naturais e técnicas sustentáveis.<br>
-                • Investir em tecnologia e inovação no campo.<br>
-                • Proteger o meio ambiente e a saúde das pessoas.
+    <header class="header">
+        <div class="container nav-bar">
+            <div class="logo">
+                <h1><i class="fas fa-leaf"></i> AgroIntel</h1>
+                <p>tecnologia + sustentabilidade</p>
             </div>
-            <div style="margin-top: 1rem; font-style: italic; font-size: 0.9rem;">
-                🚜 <span class="highlight-green">Produzir alimentos e preservar a natureza podem (e devem) caminhar juntos!</span>
+            <div class="nav-links">
+                <a href="#home">Início</a>
+                <a href="#galeria">Galeria</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#impacto">Impacto</a>
+                <a href="#contato">Participe</a>
             </div>
         </div>
+    </header>
 
-        <!-- QUIZ DINÂMICO LADO DIREITO -->
-        <div class="quiz-panel" id="quizPanel">
-            <div id="quizRenderArea"></div>
+    <main>
+        <section id="home">
+            <div class="hero">
+                <div class="container hero-grid">
+                    <div class="hero-text">
+                        <h2>Tecnologia que <span class="highlight">regenera o campo</span> e protege o amanhã</h2>
+                        <p>O futuro do agronegócio é verde, digital e inteligente. Sensoriamento remoto, IoT e biotecnologia aliados à agricultura familiar e ao agrinho.</p>
+                        <div class="btn-group">
+                            <a href="#galeria" class="btn btn-primary"><i class="fas fa-images"></i> Ver galeria de soluções</a>
+                            <a href="#contato" class="btn btn-outline"><i class="fas fa-seedling"></i> Faça parte</a>
+                        </div>
+                    </div>
+                    <div class="hero-img">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b8dfaa'/%3E%3Ccircle cx='200' cy='120' r='60' fill='%234caF50'/%3E%3Cpath d='M160 190 L240 190 L220 240 L180 240 Z' fill='%233b7a3e'/%3E%3Crect x='185' y='240' width='30' height='35' fill='%238B5A2B'/%3E%3Cpath d='M110 110 L80 70 L140 70 Z' fill='%23F9A825'/%3E%3Cpath d='M290 110 L260 70 L320 70 Z' fill='%23F9A825'/%3E%3Ctext x='90' y='280' fill='white' font-size='14' font-family='Arial'%3E🌱 tecnologia%3C/text%3E%3Ctext x='230' y='280' fill='white' font-size='14'%3E🤖 dados%3C/text%3E%3C/svg%3E"
+                             alt="Tecnologia e sustentabilidade">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= NOVA GALERIA COM SUAS 5 IMAGENS ========= -->
+        <div class="container" id="galeria">
+            <div class="section-title">📸 Registros do futuro sustentável – Agrinho</div>
+            <div class="galeria-grid" id="galeriaDinamica">
+                <!-- As imagens serão inseridas via JavaScript (para você trocar os links facilmente) -->
+            </div>
+            <p style="text-align: center; font-style: italic; margin-top: 10px;">🌾 Cada imagem representa o compromisso da nova geração com a tecnologia verde e o campo produtivo.</p>
         </div>
-    </div>
+
+        <!-- Projetos de destaque -->
+        <div class="container projetos" id="projetos">
+            <div class="section-title" style="color: #194f28;">🚜 Projetos Agrinho premiados</div>
+            <div class="projeto-item" style="background:white; border-radius:28px; padding:20px; margin-bottom:20px;">
+                <h3>🌱 Monitoramento de nascentes com drones</h3>
+                <p>Alunos do Paraná mapeiam áreas de preservação e recuperam olhos d'água usando imagens de satélite e inteligência artificial.</p>
+            </div>
+            <div class="projeto-item" style="background:white; border-radius:28px; padding:20px;">
+                <h3>📱 Aplicativo de troca de sementes crioulas</h3>
+                <p>Plataforma conecta pequenos agricultores para fortalecer a agrobiodiversidade e reduzir o desperdício.</p>
+            </div>
+        </div>
+
+        <!-- Impacto -->
+        <div class="container" id="impacto">
+            <div class="section-title">📊 O poder da tecnologia sustentável</div>
+            <div class="impacto-stats">
+                <div class="stat"><div class="stat-number">+58%</div><p>economia de água com irrigação inteligente</p></div>
+                <div class="stat"><div class="stat-number">-32%</div><p>redução de emissões com energias limpas no agro</p></div>
+                <div class="stat"><div class="stat-number">2.3M</div><p>hectares monitorados via sensoriamento remoto</p></div>
+            </div>
+        </div>
+
+        <!-- Formulário -->
+        <div class="container" id="contato">
+            <div class="section-title">🤝 Junte-se a essa revolução sustentável</div>
+            <div class="form-contato">
+                <form id="formSustentabilidade">
+                    <div class="form-group"><input type="text" id="nome" placeholder="Seu nome completo" required></div>
+                    <div class="form-group"><input type="email" id="email" placeholder="Seu e-mail" required></div>
+                    <div class="form-group"><textarea rows="3" placeholder="Conte sua ideia ou projeto sustentável..."></textarea></div>
+                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Quero fazer parte</button>
+                </form>
+                <p id="formFeedback" style="margin-top: 18px; text-align: center;"></p>
+            </div>
+        </div>
+    </main>
 
     <footer>
-        🌿 Agrinho 2026: juntos por um agro forte e um futuro sustentável! | Explore conteúdos, quiz e desafios.<br>
-        Início · Conteúdos · Quiz · Notícias · Perfil
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo"><h3><i class="fas fa-leaf"></i> AgroIntel Sustentável</h3><p>Concurso Agrinho - Tecnologia, inovação e respeito ao planeta.</p></div>
+                <div class="social"><i class="fab fa-instagram"></i> <i class="fab fa-github"></i> <i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="copy"><p>© 2025 Projeto desenvolvido para o Concurso Agrinho | Tecnologia a favor da sustentabilidade 🌎</p></div>
+        </div>
     </footer>
-</div>
 
-<button class="theme-btn" id="darkModeButton">🌓 Alternar tema claro/escuro</button>
-
-<script>
-    // BASE DE QUESTÕES (OFICIAL baseado no enunciado)
-    const QUESTIONS = [
-        {
-            text: "Qual é o principal objetivo da agricultura sustentável?",
-            options: [
-                "a) Produzir mais sem se preocupar com a natureza",
-                "b) Equilibrar produção e preservação ambiental",
-                "c) Usar mais máquinas possíveis",
-                "d) Diminuir toda produção agrícola"
-            ],
-            correct: 1,
-            explanation: "✅ Resposta correta: b) Equilibrar produção e preservação ambiental. A sustentabilidade une produtividade e respeito ao meio ambiente."
-        },
-        {
-            text: "O que pode acontecer com o uso excessivo de agrotóxicos?",
-            options: [
-                "a) Melhorar a qualidade dos rios",
-                "b) Aumentar as florestas",
-                "c) Contaminar solos e águas",
-                "d) Não causar nenhum efeito"
-            ],
-            correct: 2,
-            explanation: "⚠️ Uso excessivo contamina solos, rios e lençóis freáticos, prejudicando ecossistemas e a saúde."
-        },
-        {
-            text: "Qual tecnologia ajuda o campo de forma sustentável?",
-            options: [
-                "a) Desperdício de água",
-                "b) Queimadas ilegais",
-                "c) Máquinas e drones agrícolas",
-                "d) Poluição dos rios"
-            ],
-            correct: 2,
-            explanation: "🚁 Drones, sensoriamento remoto e máquinas de precisão otimizam insumos e reduzem impactos ambientais."
-        },
-        {
-            text: "Por que preservar o meio ambiente é importante?",
-            options: [
-                "a) Para garantir recursos às próximas gerações",
-                "b) Apenas para deixar o campo bonito",
-                "c) Porque não influencia a produção",
-                "d) Para diminuir os alimentos"
-            ],
-            correct: 0,
-            explanation: "🌎 Preservar é essencial para garantir água, solo fértil e biodiversidade para as futuras gerações."
-        },
-        {
-            text: "Qual atitude ajuda o planeta?",
-            options: [
-                "a) Desmatar áreas protegidas",
-                "b) Jogar lixo nos rios",
-                "c) Economizar água e cuidar da natureza",
-                "d) Usar produtos sem responsabilidade"
-            ],
-            correct: 2,
-            explanation: "💧 Economizar água, reciclar e cuidar da natureza são atitudes que ajudam o planeta e promovem sustentabilidade."
-        }
-    ];
-
-    let currentQIndex = 0;
-    let userSelections = new Array(QUESTIONS.length).fill(null); // guarda o índice da resposta
-    let quizCompleted = false;
-
-    const renderArea = document.getElementById("quizRenderArea");
-
-    // Função principal para renderizar o estado atual (questão ou resultado)
-    function renderCurrentScreen() {
-        if (!renderArea) return;
-        // Se todas as questões foram respondidas OU quiz finalizado
-        if (quizCompleted || (userSelections.every(sel => sel !== null) && currentQIndex >= QUESTIONS.length)) {
-            renderFinalResult();
-            return;
-        }
-        // Se ainda há pergunta atual disponível
-        if (currentQIndex < QUESTIONS.length) {
-            renderQuestion(currentQIndex);
-        } else {
-            // caso especial: se currentIndex >= length mas nem todas respondidas, corrige
-            const firstMissing = userSelections.findIndex(sel => sel === null);
-            if (firstMissing !== -1) {
-                currentQIndex = firstMissing;
-                renderQuestion(currentQIndex);
-            } else {
-                renderFinalResult();
+    <script>
+        // ⬇️⬇️⬇️ COLE AQUI OS LINKS DIRETOS DAS SUAS 5 IMAGENS ⬇️⬇️⬇️
+        // Como pegar o link direto no Postimage: Abra o link -> lado direito -> "Direct Link" -> copiar.
+        const imagens = [
+            {
+                url: "https://i.postimg.cc/seu-link-aqui/imagem1.jpg",  // Substitua pelo 1º link direto
+                titulo: "Tecnologia no campo",
+                descricao: "Sensoriamento remoto e práticas sustentáveis"
+            },
+            {
+                url: "https://i.postimg.cc/seu-link-aqui/imagem2.jpg",  // Substitua pelo 2º link direto
+                titulo: "Agricultura de precisão",
+                descricao: "Uso racional de água e fertilizantes"
+            },
+            {
+                url: "https://i.postimg.cc/seu-link-aqui/imagem3.jpg",  // Substitua pelo 3º link direto
+                titulo: "Energia renovável",
+                descricao: "Painéis solares e biogás nas propriedades"
+            },
+            {
+                url: "https://i.postimg.cc/seu-link-aqui/imagem4.jpg",  // Substitua pelo 4º link direto
+                titulo: "Jovens inovadores",
+                descricao: "Alunos protagonistas do Agrinho"
+            },
+            {
+                url: "https://i.postimg.cc/seu-link-aqui/imagem5.jpg",  // Substitua pelo 5º link direto
+                titulo: "Colheita sustentável",
+                descricao: "Tecnologia aliada à preservação ambiental"
             }
-        }
-    }
+        ];
 
-    function renderQuestion(idx) {
-        const q = QUESTIONS[idx];
-        const selectedValue = userSelections[idx];
-        let optionsHtml = '';
-        q.options.forEach((opt, optIndex) => {
-            const isSelected = (selectedValue === optIndex);
-            const selectedClass = isSelected ? 'selected' : '';
-            optionsHtml += `<button class="option-btn ${selectedClass}" data-opt-index="${optIndex}">${opt}</button>`;
+        // Função para renderizar a galeria
+        function renderizarGaleria() {
+            const container = document.getElementById("galeriaDinamica");
+            if (!container) return;
+            
+            let html = "";
+            for (let i = 0; i < imagens.length; i++) {
+                const img = imagens[i];
+                html += `
+                    <div class="card-imagem">
+                        <img src="${img.url}" alt="${img.titulo}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2cf/2f6b2f?text=Imagem+não+encontrada'">
+                        <div class="legenda">
+                            <h3><i class="fas fa-camera"></i> ${img.titulo}</h3>
+                            <p>${img.descricao}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        // Chama a função ao carregar a página
+        window.addEventListener("DOMContentLoaded", renderizarGaleria);
+
+        // Formulário
+        const form = document.getElementById('formSustentabilidade');
+        const feedback = document.getElementById('formFeedback');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            if (!nome || !email) {
+                feedback.innerHTML = "❌ Preencha nome e e-mail.";
+                feedback.style.color = "#b13e3e";
+                setTimeout(() => feedback.innerHTML = "", 3000);
+                return;
+            }
+            if (!email.includes('@')) {
+                feedback.innerHTML = "📧 E-mail inválido.";
+                feedback.style.color = "#b15c2e";
+                setTimeout(() => feedback.innerHTML = "", 3000);
+                return;
+            }
+            feedback.innerHTML = `🌱 Obrigado, ${nome}! Sua mensagem foi enviada. Vamos juntos transformar o agro. 🌾`;
+            feedback.style.color = "#1f6e2f";
+            form.reset();
+            setTimeout(() => feedback.innerHTML = "", 5000);
         });
 
-        const feedbackBlock = (selectedValue !== null) 
-            ? `<div class="feedback-area">💡 ${q.explanation}</div>`
-            : `<div class="feedback-area">📌 Escolha uma opção para prosseguir e ver o feedback.</div>`;
-
-        const progressText = `${idx+1} / ${QUESTIONS.length}`;
-        
-        const html = `
-            <div class="question-header">
-                <span class="progress-badge">📋 Questão ${progressText}</span>
-                <span>🌱 Agro consciente</span>
-            </div>
-            <div class="question-text">🌿 ${q.text}</div>
-            <div class="options-area" id="optionsContainer">
-                ${optionsHtml}
-            </div>
-            ${feedbackBlock}
-            <div class="action-buttons">
-                <div>
-                    ${idx > 0 ? `<button class="nav-btn" id="prevBtn">◀ Anterior</button>` : ''}
-                    <button class="nav-btn" id="nextBtn">${idx === QUESTIONS.length-1 ? '✅ Finalizar Quiz' : 'Próxima ➤'}</button>
-                </div>
-                <button class="restart-btn" id="resetQuizBtn">🔄 Reiniciar Quiz</button>
-            </div>
-        `;
-        
-        renderArea.innerHTML = html;
-        
-        // Eventos das opções
-        const optionButtons = document.querySelectorAll('.option-btn');
-        optionButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const selectedIdx = parseInt(btn.dataset.optIndex);
-                if (userSelections[idx] === selectedIdx) return;
-                userSelections[idx] = selectedIdx;
-                renderQuestion(idx);  // re-render para mostrar feedback
+        // Navegação suave
+        document.querySelectorAll('.nav-links a, .btn-primary, .btn-outline').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const hash = this.getAttribute('href');
+                if (hash && hash.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = hash.substring(1);
+                    const target = document.getElementById(targetId);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    else if (targetId === "home") window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
         });
-        
-        // Botão próximo
-        const nextBtn = document.getElementById('nextBtn');
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                if (userSelections[idx] === null) {
-                    alert('🌾 Por favor, selecione uma resposta antes de avançar!');
-                    return;
-                }
-                if (idx === QUESTIONS.length - 1) {
-                    // Finalizar quiz
-                    quizCompleted = true;
-                    renderCurrentScreen();
-                } else {
-                    currentQIndex = idx + 1;
-                    renderCurrentScreen();
-                }
-            });
-        }
-        
-        // Botão anterior
-        const prevBtn = document.getElementById('prevBtn');
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                if (idx > 0) {
-                    currentQIndex = idx - 1;
-                    renderCurrentScreen();
-                }
-            });
-        }
-        
-        const resetBtn = document.getElementById('resetQuizBtn');
-        if (resetBtn) resetBtn.addEventListener('click', resetQuiz);
-    }
-    
-    function renderFinalResult() {
-        let correctCount = 0;
-        let detailsHtml = '';
-        QUESTIONS.forEach((q, i) => {
-            const userAns = userSelections[i];
-            const isCorrect = (userAns === q.correct);
-            if (isCorrect) correctCount++;
-            const userText = (userAns !== null) ? q.options[userAns] : 'Não respondida';
-            const correctText = q.options[q.correct];
-            const icon = isCorrect ? '✅' : '❌';
-            detailsHtml += `
-                <div style="border-bottom: 1px solid #c8e0b5; padding: 12px 0;">
-                    <strong>${i+1}. ${q.text}</strong><br>
-                    ${icon} Sua resposta: ${userText}<br>
-                    ✔️ Correta: ${correctText}<br>
-                    <span style="font-size:0.85rem; opacity:0.9;">📖 ${q.explanation}</span>
-                </div>
-            `;
-        });
-        
-        const percent = Math.round((correctCount / QUESTIONS.length) * 100);
-        let mensagem = '';
-        if (percent === 100) mensagem = '🌟 Perfeito! Você é exemplo de agro sustentável! 🌟';
-        else if (percent >= 80) mensagem = '🌻 Muito bem! Continue assim, fortalecendo o futuro do campo.';
-        else if (percent >= 60) mensagem = '🍃 Bom! Revisar os conteúdos vai te ajudar a ser um agente de mudança.';
-        else mensagem = '🌱 Vamos estudar mais? O equilíbrio entre produção e meio ambiente é essencial! Leia os pontos positivos/negativos.';
-        
-        const resultHTML = `
-            <div class="result-box">
-                <h2>🏆 Resultado final - Quiz Agrinho 2026</h2>
-                <div class="score-circle">${correctCount}/${QUESTIONS.length}</div>
-                <div style="font-size:1.2rem; margin: 5px 0;">${percent}% de acertos</div>
-                <div style="margin: 12px 0; font-weight: 500;">${mensagem}</div>
-                <div class="details-list">
-                    ${detailsHtml}
-                </div>
-                <button class="restart-btn" id="resultRestartBtn" style="margin-top: 1rem;">🌾 Refazer o quiz 🌾</button>
-            </div>
-        `;
-        renderArea.innerHTML = resultHTML;
-        const restartResult = document.getElementById('resultRestartBtn');
-        if (restartResult) restartResult.addEventListener('click', resetQuiz);
-    }
-    
-    function resetQuiz() {
-        currentQIndex = 0;
-        userSelections = new Array(QUESTIONS.length).fill(null);
-        quizCompleted = false;
-        renderCurrentScreen();
-    }
-    
-    // TEMA ESCURO/CLARO COM ANIMAÇÕES E PERSISTÊNCIA
-    const themeButton = document.getElementById('darkModeButton');
-    function applyThemePreference() {
-        const saved = localStorage.getItem('agrinhoTheme2026');
-        if (saved === 'dark') {
-            document.body.classList.add('dark');
-        } else if (saved === 'light') {
-            document.body.classList.remove('dark');
-        } else {
-            // sistema
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (prefersDark) document.body.classList.add('dark');
-        }
-    }
-    
-    function toggleTheme() {
-        if (document.body.classList.contains('dark')) {
-            document.body.classList.remove('dark');
-            localStorage.setItem('agrinhoTheme2026', 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem('agrinhoTheme2026', 'dark');
-        }
-    }
-    
-    if (themeButton) themeButton.addEventListener('click', toggleTheme);
-    applyThemePreference();
-    
-    // INICIALIZAR QUIZ
-    renderCurrentScreen();
-</script>
+    </script>
 </body>
 </html>

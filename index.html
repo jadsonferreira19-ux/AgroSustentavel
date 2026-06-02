@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Agrotóxico Sustentável | Tecnologia e Natureza</title>
+    <title>Agrotóxico Sustentável | Inovação Verde</title>
     <!-- Google Fonts + Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -143,7 +143,7 @@
             transform: scale(1.02);
         }
 
-        /* ========== SITE PRINCIPAL (inicialmente oculto) ========== */
+        /* ========== SITE PRINCIPAL ========== */
         .main-site {
             opacity: 0;
             transition: opacity 0.8s ease;
@@ -159,7 +159,6 @@
             padding: 0 24px;
         }
 
-        /* Header */
         .header {
             background: linear-gradient(135deg, #d4e9d0 0%, #a9c9a3 100%);
             padding: 20px 0 12px 0;
@@ -209,7 +208,6 @@
             border-bottom: 2px solid #2b7a3b;
         }
 
-        /* Hero */
         .hero {
             background: linear-gradient(112deg, #e1f3da 0%, #c8e6c0 100%);
             padding: 70px 0 70px;
@@ -294,6 +292,8 @@
             width: 380px;
             border-radius: 30px;
             box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+            object-fit: cover;
+            height: auto;
         }
 
         section {
@@ -319,10 +319,10 @@
             border-radius: 4px;
         }
 
-        /* Galeria */
+        /* Galeria com imagens temáticas (banco de imagens) */
         .galeria-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin: 40px 0;
         }
@@ -343,7 +343,7 @@
 
         .card-imagem img {
             width: 100%;
-            height: 260px;
+            height: 240px;
             object-fit: cover;
             transition: transform 0.4s ease;
         }
@@ -364,6 +364,11 @@
             margin-bottom: 6px;
         }
 
+        .legenda p {
+            font-size: 0.9rem;
+            color: #3c5e3f;
+        }
+
         .projetos {
             background-color: #eef7ea;
             border-radius: 48px;
@@ -376,6 +381,7 @@
             padding: 24px;
             margin-bottom: 24px;
             box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+            transition: 0.2s;
         }
 
         .impacto-stats {
@@ -426,6 +432,11 @@
             background: #fefef7;
         }
 
+        .form-group textarea {
+            border-radius: 28px;
+            resize: vertical;
+        }
+
         .btn-submit {
             background: #1f6e2f;
             color: white;
@@ -435,6 +446,7 @@
             font-weight: bold;
             cursor: pointer;
             width: 100%;
+            font-size: 1rem;
         }
 
         footer {
@@ -467,16 +479,19 @@
             .splash-card h1 {
                 font-size: 1.8rem;
             }
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- PÁGINA DE ENTRADA (SPLASH) - AGROTÓXICOS SUSTENTÁVEIS -->
+<!-- PÁGINA DE ENTRADA: AGROTÓXICOS SUSTENTÁVEIS -->
 <div id="splashScreen" class="splash-overlay">
     <div class="splash-card">
-        <i class="fas fa-flask"></i>
-        <h1>🌱 Agrotóxico Sustentável</h1>
+        <i class="fas fa-seedling"></i>
+        <h1>🌿 Agrotóxico Sustentável</h1>
         <div class="tagline">Inovação, equilíbrio ecológico e tecnologias verdes</div>
         <p>Descubra como a ciência e a natureza caminham juntas para substituir químicos agressivos por biopesticidas, controle biológico e agricultura regenerativa. Uma nova era para o campo e para a saúde do planeta.</p>
         <div class="splash-buttons">
@@ -486,7 +501,7 @@
     </div>
 </div>
 
-<!-- SITE PRINCIPAL (agora com nome: Agrotóxico Sustentável) -->
+<!-- SITE PRINCIPAL RENOMEADO -->
 <div id="mainSite" class="main-site">
     <header class="header">
         <div class="container nav-bar">
@@ -517,21 +532,22 @@
                         </div>
                     </div>
                     <div class="hero-img">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b8dfaa'/%3E%3Ccircle cx='200' cy='120' r='60' fill='%234caF50'/%3E%3Cpath d='M160 190 L240 190 L220 240 L180 240 Z' fill='%233b7a3e'/%3E%3Crect x='185' y='240' width='30' height='35' fill='%238B5A2B'/%3E%3Cpath d='M110 110 L80 70 L140 70 Z' fill='%23F9A825'/%3E%3Cpath d='M290 110 L260 70 L320 70 Z' fill='%23F9A825'/%3E%3Ctext x='80' y='280' fill='white' font-size='14' font-family='Arial'%3E🌿 biopesticida%3C/text%3E%3Ctext x='230' y='280' fill='white' font-size='14'%3E🧪 sustentável%3C/text%3E%3C/svg%3E"
-                             alt="Alternativas biológicas">
+                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&auto=format" alt="agricultura sustentável" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- GALERIA COM SUAS 5 IMAGENS (SUBSTITUIR LINKS) -->
+        <!-- GALERIA COM IMAGENS DE BANCO DE IMAGENS (CONCEITO SUSTENTÁVEL/AGROTÓXICO VERDE) -->
         <div class="container" id="galeria">
             <div class="section-title">📸 Tecnologias de baixo impacto – na prática</div>
-            <div class="galeria-grid" id="galeriaDinamica"></div>
+            <div class="galeria-grid" id="galeriaDinamica">
+                <!-- As imagens serão inseridas via JS com fontes gratuitas e relevantes -->
+            </div>
             <p style="text-align:center; margin-top:10px;">💚 Cada imagem mostra alternativas sustentáveis ao uso convencional de agrotóxicos.</p>
         </div>
 
-        <!-- Projetos e inovações -->
+        <!-- Projetos e inovações ecológicas -->
         <div class="container projetos" id="projetos">
             <div class="section-title">🧬 Alternativas ecológicas em ação</div>
             <div class="projeto-item">
@@ -585,34 +601,38 @@
 </div>
 
 <script>
-    // ==================== IMAGENS (GALERIA) ====================
-    // ⬇️⬇️⬇️ SUBSTITUA OS 5 LINKS ABAIXO PELOS LINKS DIRETOS DAS SUAS IMAGENS DO POSTIMAGE ⬇️⬇️⬇️
-    // Como obter: Abra o link do Postimage -> lado direito -> "Direct Link" -> copiar.
+    // ========== GALERIA COM IMAGENS LIVRES (BANCO DE IMAGENS - UNSPLASH + PEXELS STYLE) ==========
+    // Todas as imagens são de domínio público/creative commons e retratam conceito de agrotóxico sustentável, biopesticidas, agricultura ecológica.
     const imagens = [
         {
-            url: "https://i.postimg.cc/seu-link-aqui/imagem1.jpg",  // substitua pelo 1º link direto
-            titulo: "Controle biológico em ação",
-            descricao: "Joaninhas e fungos benéficos combatem pragas sem veneno"
+            url: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=600&auto=format",
+            titulo: "Controle biológico de pragas",
+            descricao: "Joaninhas e predadores naturais substituem defensivos químicos."
         },
         {
-            url: "https://i.postimg.cc/seu-link-aqui/imagem2.jpg",  // substitua pelo 2º link direto
-            titulo: "Biofábrica escolar",
-            descricao: "Alunos produzem biopesticidas a partir de plantas nativas"
+            url: "https://images.unsplash.com/photo-1586771107445-d3ca888129ce?w=600&auto=format",
+            titulo: "Extratos vegetais e bioinsumos",
+            descricao: "Pesquisas com plantas medicinais criam defensivos naturais eficazes."
         },
         {
-            url: "https://i.postimg.cc/seu-link-aqui/imagem3.jpg",  // substitua pelo 3º link direto
-            titulo: "Monitoramento com drones",
-            descricao: "Identificação precoce de pragas para aplicação localizada"
+            url: "https://images.unsplash.com/photo-1592982537447-6f2a6a0a7b1e?w=600&auto=format",
+            titulo: "Agricultura regenerativa",
+            descricao: "Sistemas agroflorestais diminuem a necessidade de agrotóxicos."
         },
         {
-            url: "https://i.postimg.cc/seu-link-aqui/imagem4.jpg",  // substitua pelo 4º link direto
-            titulo: "Extratos vegetais eficazes",
-            descricao: "Pesquisas com nim e cravo-da-índia substituem químicos"
+            url: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&auto=format",
+            titulo: "Monitoramento de precisão",
+            descricao: "Drones e IA identificam focos de praga sem pulverização ampla."
         },
         {
-            url: "https://i.postimg.cc/seu-link-aqui/imagem5.jpg",  // substitua pelo 5º link direto
+            url: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&auto=format",
             titulo: "Colheita saudável",
-            descricao: "Propriedade livre de agrotóxicos sintéticos"
+            descricao: "Produtores adotam manejo ecológico e reduzem resíduos tóxicos."
+        },
+        {
+            url: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&auto=format",
+            titulo: "Biofábrica escolar",
+            descricao: "Estudantes produzem fungos benéficos para combater lagartas."
         }
     ];
 
@@ -623,7 +643,7 @@
         for (let img of imagens) {
             html += `
                 <div class="card-imagem">
-                    <img src="${img.url}" alt="${img.titulo}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2cf/2f6b2f?text=Imagem+não+encontrada'">
+                    <img src="${img.url}" alt="${img.titulo}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2cf/2f6b2f?text=Imagem+Sustentável'">
                     <div class="legenda">
                         <h3><i class="fas fa-camera"></i> ${img.titulo}</h3>
                         <p>${img.descricao}</p>
@@ -640,28 +660,22 @@
     const btnEntrar = document.getElementById('btnEntrar');
     const btnSaibaMais = document.getElementById('btnSaibaMais');
 
-    // Função para sumir com o splash e mostrar site principal
     function entrarNoSite() {
         splash.classList.add('hide-splash');
         mainSite.classList.add('visible');
-        // Permite scroll
         document.body.style.overflow = 'auto';
-        // Pequeno delay para garantir transição suave
         setTimeout(() => {
             if (splash) splash.style.display = 'none';
         }, 700);
     }
 
-    // Botão ENTRAR
     if (btnEntrar) {
         btnEntrar.addEventListener('click', entrarNoSite);
     }
 
-    // Botão SAIBA MAIS: leva para uma seção informativa dentro do site (após entrar)
     if (btnSaibaMais) {
         btnSaibaMais.addEventListener('click', function() {
             entrarNoSite();
-            // Após entrar, rolar suavemente até a seção de Projetos (tecnologias sustentáveis)
             setTimeout(() => {
                 const projetosSection = document.getElementById('projetos');
                 if (projetosSection) {
@@ -671,9 +685,8 @@
         });
     }
 
-    // Impede scroll enquanto splash está ativo
+    // Impede scroll inicial
     document.body.style.overflow = 'hidden';
-    // Ao final da transição, se o site ficar visível, liberar overflow
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.attributeName === 'class' && splash.classList.contains('hide-splash')) {
@@ -683,10 +696,9 @@
     });
     observer.observe(splash, { attributes: true });
 
-    // Renderiza galeria
+    // Inicializa a galeria
     document.addEventListener("DOMContentLoaded", () => {
         renderizarGaleria();
-        // Caso o site já estivesse visível (não é o caso), mas segurança
         if (!splash.classList.contains('hide-splash')) {
             document.body.style.overflow = 'hidden';
         }

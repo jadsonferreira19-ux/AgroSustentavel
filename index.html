@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Agrinho 2025 | Galeria – Tecnologia e Sustentabilidade</title>
+    <title>Agrotóxico Sustentável | Tecnologia e Natureza</title>
     <!-- Google Fonts + Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,135 @@
             color: #1a2e1f;
             line-height: 1.5;
             scroll-behavior: smooth;
+        }
+
+        /* ========== SPLASH / PÁGINA DE ENTRADA ========== */
+        .splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0b3b1a 0%, #1c5a2d 100%);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .splash-overlay.hide-splash {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .splash-card {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(2px);
+            max-width: 550px;
+            width: 90%;
+            border-radius: 64px;
+            padding: 48px 32px;
+            text-align: center;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.7s ease;
+            border: 1px solid #c6e7b5;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .splash-card i {
+            font-size: 4rem;
+            color: #2b7e3a;
+            background: #e0f2da;
+            padding: 20px;
+            border-radius: 80px;
+            margin-bottom: 24px;
+        }
+
+        .splash-card h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #124d22;
+            margin-bottom: 12px;
+        }
+
+        .splash-card .tagline {
+            font-size: 1rem;
+            color: #2a6838;
+            margin-bottom: 28px;
+            font-weight: 500;
+        }
+
+        .splash-card p {
+            color: #2d4a2f;
+            margin-bottom: 32px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .splash-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+        }
+
+        .btn-splash {
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-entrar {
+            background-color: #1f6e2f;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .btn-entrar:hover {
+            background-color: #0e551e;
+            transform: scale(1.02);
+        }
+
+        .btn-saibamais {
+            background: transparent;
+            border: 2px solid #1f6e2f;
+            color: #1f6e2f;
+        }
+
+        .btn-saibamais:hover {
+            background: #1f6e2f10;
+            transform: scale(1.02);
+        }
+
+        /* ========== SITE PRINCIPAL (inicialmente oculto) ========== */
+        .main-site {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .main-site.visible {
+            opacity: 1;
         }
 
         .container {
@@ -49,14 +178,14 @@
         }
 
         .logo h1 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             color: #1f4f2b;
         }
 
         .logo p {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
             color: #2a5e2e;
         }
@@ -101,7 +230,7 @@
         }
 
         .hero-text h2 {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             font-weight: 800;
             color: #1c4d27;
             line-height: 1.2;
@@ -147,18 +276,12 @@
         .btn-primary:hover {
             background-color: #0e551e;
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
         .btn-outline {
             background: transparent;
             border: 2px solid #1f6e2f;
             color: #1f6e2f;
-        }
-
-        .btn-outline:hover {
-            background: #1f6e2f20;
-            transform: translateY(-2px);
         }
 
         .hero-img {
@@ -196,7 +319,7 @@
             border-radius: 4px;
         }
 
-        /* ===== GALERIA DE IMAGENS (SUAS 5 FOTOS) ===== */
+        /* Galeria */
         .galeria-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -241,16 +364,18 @@
             margin-bottom: 6px;
         }
 
-        .legenda p {
-            font-size: 0.9rem;
-            color: #3c5e3f;
-        }
-
-        /* outros componentes mantidos */
         .projetos {
             background-color: #eef7ea;
             border-radius: 48px;
             padding: 50px 30px;
+        }
+
+        .projeto-item {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
         }
 
         .impacto-stats {
@@ -301,10 +426,6 @@
             background: #fefef7;
         }
 
-        .form-group textarea {
-            border-radius: 28px;
-        }
-
         .btn-submit {
             background: #1f6e2f;
             color: white;
@@ -314,7 +435,6 @@
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            font-size: 1rem;
         }
 
         footer {
@@ -344,23 +464,40 @@
             .hero-text h2 {
                 font-size: 2rem;
             }
-            .galeria-grid {
-                grid-template-columns: 1fr;
+            .splash-card h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
+
+<!-- PÁGINA DE ENTRADA (SPLASH) - AGROTÓXICOS SUSTENTÁVEIS -->
+<div id="splashScreen" class="splash-overlay">
+    <div class="splash-card">
+        <i class="fas fa-flask"></i>
+        <h1>🌱 Agrotóxico Sustentável</h1>
+        <div class="tagline">Inovação, equilíbrio ecológico e tecnologias verdes</div>
+        <p>Descubra como a ciência e a natureza caminham juntas para substituir químicos agressivos por biopesticidas, controle biológico e agricultura regenerativa. Uma nova era para o campo e para a saúde do planeta.</p>
+        <div class="splash-buttons">
+            <button id="btnEntrar" class="btn-splash btn-entrar"><i class="fas fa-arrow-right"></i> Entrar</button>
+            <button id="btnSaibaMais" class="btn-splash btn-saibamais"><i class="fas fa-leaf"></i> Saiba Mais</button>
+        </div>
+    </div>
+</div>
+
+<!-- SITE PRINCIPAL (agora com nome: Agrotóxico Sustentável) -->
+<div id="mainSite" class="main-site">
     <header class="header">
         <div class="container nav-bar">
             <div class="logo">
-                <h1><i class="fas fa-leaf"></i> AgroIntel</h1>
-                <p>tecnologia + sustentabilidade</p>
+                <h1><i class="fas fa-leaf"></i> Agrotóxico Sustentável</h1>
+                <p>ciência + natureza = futuro vivo</p>
             </div>
             <div class="nav-links">
                 <a href="#home">Início</a>
                 <a href="#galeria">Galeria</a>
-                <a href="#projetos">Projetos</a>
+                <a href="#projetos">Tecnologias</a>
                 <a href="#impacto">Impacto</a>
                 <a href="#contato">Participe</a>
             </div>
@@ -372,62 +509,64 @@
             <div class="hero">
                 <div class="container hero-grid">
                     <div class="hero-text">
-                        <h2>Tecnologia que <span class="highlight">regenera o campo</span> e protege o amanhã</h2>
-                        <p>O futuro do agronegócio é verde, digital e inteligente. Sensoriamento remoto, IoT e biotecnologia aliados à agricultura familiar e ao agrinho.</p>
+                        <h2>Do químico ao <span class="highlight">biológico:</span> a revolução dos agrotóxicos sustentáveis</h2>
+                        <p>Biopesticidas, feromônios, extratos vegetais e microrganismos: tecnologias que protegem as lavouras sem agredir o solo, a água e a saúde das famílias agricultoras.</p>
                         <div class="btn-group">
-                            <a href="#galeria" class="btn btn-primary"><i class="fas fa-images"></i> Ver galeria de soluções</a>
-                            <a href="#contato" class="btn btn-outline"><i class="fas fa-seedling"></i> Faça parte</a>
+                            <a href="#galeria" class="btn btn-primary"><i class="fas fa-seedling"></i> Soluções verdes</a>
+                            <a href="#contato" class="btn btn-outline"><i class="fas fa-chalkboard-user"></i> Quero aplicar</a>
                         </div>
                     </div>
                     <div class="hero-img">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b8dfaa'/%3E%3Ccircle cx='200' cy='120' r='60' fill='%234caF50'/%3E%3Cpath d='M160 190 L240 190 L220 240 L180 240 Z' fill='%233b7a3e'/%3E%3Crect x='185' y='240' width='30' height='35' fill='%238B5A2B'/%3E%3Cpath d='M110 110 L80 70 L140 70 Z' fill='%23F9A825'/%3E%3Cpath d='M290 110 L260 70 L320 70 Z' fill='%23F9A825'/%3E%3Ctext x='90' y='280' fill='white' font-size='14' font-family='Arial'%3E🌱 tecnologia%3C/text%3E%3Ctext x='230' y='280' fill='white' font-size='14'%3E🤖 dados%3C/text%3E%3C/svg%3E"
-                             alt="Tecnologia e sustentabilidade">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23b8dfaa'/%3E%3Ccircle cx='200' cy='120' r='60' fill='%234caF50'/%3E%3Cpath d='M160 190 L240 190 L220 240 L180 240 Z' fill='%233b7a3e'/%3E%3Crect x='185' y='240' width='30' height='35' fill='%238B5A2B'/%3E%3Cpath d='M110 110 L80 70 L140 70 Z' fill='%23F9A825'/%3E%3Cpath d='M290 110 L260 70 L320 70 Z' fill='%23F9A825'/%3E%3Ctext x='80' y='280' fill='white' font-size='14' font-family='Arial'%3E🌿 biopesticida%3C/text%3E%3Ctext x='230' y='280' fill='white' font-size='14'%3E🧪 sustentável%3C/text%3E%3C/svg%3E"
+                             alt="Alternativas biológicas">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========= NOVA GALERIA COM SUAS 5 IMAGENS ========= -->
+        <!-- GALERIA COM SUAS 5 IMAGENS (SUBSTITUIR LINKS) -->
         <div class="container" id="galeria">
-            <div class="section-title">📸 Registros do futuro sustentável – Agrinho</div>
-            <div class="galeria-grid" id="galeriaDinamica">
-                <!-- As imagens serão inseridas via JavaScript (para você trocar os links facilmente) -->
-            </div>
-            <p style="text-align: center; font-style: italic; margin-top: 10px;">🌾 Cada imagem representa o compromisso da nova geração com a tecnologia verde e o campo produtivo.</p>
+            <div class="section-title">📸 Tecnologias de baixo impacto – na prática</div>
+            <div class="galeria-grid" id="galeriaDinamica"></div>
+            <p style="text-align:center; margin-top:10px;">💚 Cada imagem mostra alternativas sustentáveis ao uso convencional de agrotóxicos.</p>
         </div>
 
-        <!-- Projetos de destaque -->
+        <!-- Projetos e inovações -->
         <div class="container projetos" id="projetos">
-            <div class="section-title" style="color: #194f28;">🚜 Projetos Agrinho premiados</div>
-            <div class="projeto-item" style="background:white; border-radius:28px; padding:20px; margin-bottom:20px;">
-                <h3>🌱 Monitoramento de nascentes com drones</h3>
-                <p>Alunos do Paraná mapeiam áreas de preservação e recuperam olhos d'água usando imagens de satélite e inteligência artificial.</p>
+            <div class="section-title">🧬 Alternativas ecológicas em ação</div>
+            <div class="projeto-item">
+                <h3><i class="fas fa-bacteria"></i> Biofábricas comunitárias</h3>
+                <p>Produção local de fungos e bactérias benéficas (como Beauveria bassiana) que controlam pragas naturalmente, sem resíduos tóxicos. Projeto Agrinho vencedor em 2024.</p>
             </div>
-            <div class="projeto-item" style="background:white; border-radius:28px; padding:20px;">
-                <h3>📱 Aplicativo de troca de sementes crioulas</h3>
-                <p>Plataforma conecta pequenos agricultores para fortalecer a agrobiodiversidade e reduzir o desperdício.</p>
+            <div class="projeto-item">
+                <h3><i class="fas fa-chart-line"></i> Inteligência artificial para manejo ecológico</h3>
+                <p>Sensores e machine learning identificam focos de praga com precisão, reduzindo em 80% a necessidade de aplicações. Aliado a bioinsumos, elimina venenos.</p>
+            </div>
+            <div class="projeto-item">
+                <h3><i class="fas fa-hand-holding-heart"></i> Selo "Agrotóxico Zero" para pequenos produtores</h3>
+                <p>Rastreabilidade com blockchain certifica produtos livres de químicos sintéticos, agregando valor e incentivando transição agroecológica.</p>
             </div>
         </div>
 
-        <!-- Impacto -->
+        <!-- Impacto mensurável -->
         <div class="container" id="impacto">
-            <div class="section-title">📊 O poder da tecnologia sustentável</div>
+            <div class="section-title">📊 Dados da transição sustentável</div>
             <div class="impacto-stats">
-                <div class="stat"><div class="stat-number">+58%</div><p>economia de água com irrigação inteligente</p></div>
-                <div class="stat"><div class="stat-number">-32%</div><p>redução de emissões com energias limpas no agro</p></div>
-                <div class="stat"><div class="stat-number">2.3M</div><p>hectares monitorados via sensoriamento remoto</p></div>
+                <div class="stat"><div class="stat-number">-67%</div><p>redução de resíduos tóxicos no solo com biodefensivos</p></div>
+                <div class="stat"><div class="stat-number">+40%</div><p>aumento de biodiversidade em áreas com controle biológico</p></div>
+                <div class="stat"><div class="stat-number">2.500+</div><p>comunidades rurais capacitadas em agroecologia</p></div>
             </div>
         </div>
 
-        <!-- Formulário -->
+        <!-- Formulário de engajamento -->
         <div class="container" id="contato">
-            <div class="section-title">🤝 Junte-se a essa revolução sustentável</div>
+            <div class="section-title">🤝 Seja parte dessa mudança</div>
             <div class="form-contato">
                 <form id="formSustentabilidade">
                     <div class="form-group"><input type="text" id="nome" placeholder="Seu nome completo" required></div>
                     <div class="form-group"><input type="email" id="email" placeholder="Seu e-mail" required></div>
-                    <div class="form-group"><textarea rows="3" placeholder="Conte sua ideia ou projeto sustentável..."></textarea></div>
-                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Quero fazer parte</button>
+                    <div class="form-group"><textarea rows="3" placeholder="Conte como você ou sua comunidade podem adotar práticas com menos agrotóxicos..."></textarea></div>
+                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Quero saber mais</button>
                 </form>
                 <p id="formFeedback" style="margin-top: 18px; text-align: center;"></p>
             </div>
@@ -437,71 +576,126 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo"><h3><i class="fas fa-leaf"></i> AgroIntel Sustentável</h3><p>Concurso Agrinho - Tecnologia, inovação e respeito ao planeta.</p></div>
+                <div class="footer-logo"><h3><i class="fas fa-leaf"></i> Agrotóxico Sustentável</h3><p>Alternativas que protegem vidas e o solo.</p></div>
                 <div class="social"><i class="fab fa-instagram"></i> <i class="fab fa-github"></i> <i class="fab fa-youtube"></i></div>
             </div>
-            <div class="copy"><p>© 2025 Projeto desenvolvido para o Concurso Agrinho | Tecnologia a favor da sustentabilidade 🌎</p></div>
+            <div class="copy"><p>© 2025 Projeto Agrinho – Tecnologia a favor da sustentabilidade | Substituição inteligente de agrotóxicos 🌎</p></div>
         </div>
     </footer>
+</div>
 
-    <script>
-        // ⬇️⬇️⬇️ COLE AQUI OS LINKS DIRETOS DAS SUAS 5 IMAGENS ⬇️⬇️⬇️
-        // Como pegar o link direto no Postimage: Abra o link -> lado direito -> "Direct Link" -> copiar.
-        const imagens = [
-            {
-                url: "https://i.postimg.cc/seu-link-aqui/imagem1.jpg",  // Substitua pelo 1º link direto
-                titulo: "Tecnologia no campo",
-                descricao: "Sensoriamento remoto e práticas sustentáveis"
-            },
-            {
-                url: "https://i.postimg.cc/seu-link-aqui/imagem2.jpg",  // Substitua pelo 2º link direto
-                titulo: "Agricultura de precisão",
-                descricao: "Uso racional de água e fertilizantes"
-            },
-            {
-                url: "https://i.postimg.cc/seu-link-aqui/imagem3.jpg",  // Substitua pelo 3º link direto
-                titulo: "Energia renovável",
-                descricao: "Painéis solares e biogás nas propriedades"
-            },
-            {
-                url: "https://i.postimg.cc/seu-link-aqui/imagem4.jpg",  // Substitua pelo 4º link direto
-                titulo: "Jovens inovadores",
-                descricao: "Alunos protagonistas do Agrinho"
-            },
-            {
-                url: "https://i.postimg.cc/seu-link-aqui/imagem5.jpg",  // Substitua pelo 5º link direto
-                titulo: "Colheita sustentável",
-                descricao: "Tecnologia aliada à preservação ambiental"
-            }
-        ];
-
-        // Função para renderizar a galeria
-        function renderizarGaleria() {
-            const container = document.getElementById("galeriaDinamica");
-            if (!container) return;
-            
-            let html = "";
-            for (let i = 0; i < imagens.length; i++) {
-                const img = imagens[i];
-                html += `
-                    <div class="card-imagem">
-                        <img src="${img.url}" alt="${img.titulo}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2cf/2f6b2f?text=Imagem+não+encontrada'">
-                        <div class="legenda">
-                            <h3><i class="fas fa-camera"></i> ${img.titulo}</h3>
-                            <p>${img.descricao}</p>
-                        </div>
-                    </div>
-                `;
-            }
-            container.innerHTML = html;
+<script>
+    // ==================== IMAGENS (GALERIA) ====================
+    // ⬇️⬇️⬇️ SUBSTITUA OS 5 LINKS ABAIXO PELOS LINKS DIRETOS DAS SUAS IMAGENS DO POSTIMAGE ⬇️⬇️⬇️
+    // Como obter: Abra o link do Postimage -> lado direito -> "Direct Link" -> copiar.
+    const imagens = [
+        {
+            url: "https://i.postimg.cc/seu-link-aqui/imagem1.jpg",  // substitua pelo 1º link direto
+            titulo: "Controle biológico em ação",
+            descricao: "Joaninhas e fungos benéficos combatem pragas sem veneno"
+        },
+        {
+            url: "https://i.postimg.cc/seu-link-aqui/imagem2.jpg",  // substitua pelo 2º link direto
+            titulo: "Biofábrica escolar",
+            descricao: "Alunos produzem biopesticidas a partir de plantas nativas"
+        },
+        {
+            url: "https://i.postimg.cc/seu-link-aqui/imagem3.jpg",  // substitua pelo 3º link direto
+            titulo: "Monitoramento com drones",
+            descricao: "Identificação precoce de pragas para aplicação localizada"
+        },
+        {
+            url: "https://i.postimg.cc/seu-link-aqui/imagem4.jpg",  // substitua pelo 4º link direto
+            titulo: "Extratos vegetais eficazes",
+            descricao: "Pesquisas com nim e cravo-da-índia substituem químicos"
+        },
+        {
+            url: "https://i.postimg.cc/seu-link-aqui/imagem5.jpg",  // substitua pelo 5º link direto
+            titulo: "Colheita saudável",
+            descricao: "Propriedade livre de agrotóxicos sintéticos"
         }
+    ];
 
-        // Chama a função ao carregar a página
-        window.addEventListener("DOMContentLoaded", renderizarGaleria);
+    function renderizarGaleria() {
+        const container = document.getElementById("galeriaDinamica");
+        if (!container) return;
+        let html = "";
+        for (let img of imagens) {
+            html += `
+                <div class="card-imagem">
+                    <img src="${img.url}" alt="${img.titulo}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2cf/2f6b2f?text=Imagem+não+encontrada'">
+                    <div class="legenda">
+                        <h3><i class="fas fa-camera"></i> ${img.titulo}</h3>
+                        <p>${img.descricao}</p>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
 
-        // Formulário
-        const form = document.getElementById('formSustentabilidade');
-        const feedback = document.getElementById('formFeedback');
+    // ========== LÓGICA DA PÁGINA DE ENTRADA ==========
+    const splash = document.getElementById('splashScreen');
+    const mainSite = document.getElementById('mainSite');
+    const btnEntrar = document.getElementById('btnEntrar');
+    const btnSaibaMais = document.getElementById('btnSaibaMais');
+
+    // Função para sumir com o splash e mostrar site principal
+    function entrarNoSite() {
+        splash.classList.add('hide-splash');
+        mainSite.classList.add('visible');
+        // Permite scroll
+        document.body.style.overflow = 'auto';
+        // Pequeno delay para garantir transição suave
+        setTimeout(() => {
+            if (splash) splash.style.display = 'none';
+        }, 700);
+    }
+
+    // Botão ENTRAR
+    if (btnEntrar) {
+        btnEntrar.addEventListener('click', entrarNoSite);
+    }
+
+    // Botão SAIBA MAIS: leva para uma seção informativa dentro do site (após entrar)
+    if (btnSaibaMais) {
+        btnSaibaMais.addEventListener('click', function() {
+            entrarNoSite();
+            // Após entrar, rolar suavemente até a seção de Projetos (tecnologias sustentáveis)
+            setTimeout(() => {
+                const projetosSection = document.getElementById('projetos');
+                if (projetosSection) {
+                    projetosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 800);
+        });
+    }
+
+    // Impede scroll enquanto splash está ativo
+    document.body.style.overflow = 'hidden';
+    // Ao final da transição, se o site ficar visível, liberar overflow
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'class' && splash.classList.contains('hide-splash')) {
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+    observer.observe(splash, { attributes: true });
+
+    // Renderiza galeria
+    document.addEventListener("DOMContentLoaded", () => {
+        renderizarGaleria();
+        // Caso o site já estivesse visível (não é o caso), mas segurança
+        if (!splash.classList.contains('hide-splash')) {
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    // Formulário de contato
+    const form = document.getElementById('formSustentabilidade');
+    const feedback = document.getElementById('formFeedback');
+    if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const nome = document.getElementById('nome').value.trim();
@@ -518,25 +712,26 @@
                 setTimeout(() => feedback.innerHTML = "", 3000);
                 return;
             }
-            feedback.innerHTML = `🌱 Obrigado, ${nome}! Sua mensagem foi enviada. Vamos juntos transformar o agro. 🌾`;
+            feedback.innerHTML = `🌿 Obrigado, ${nome}! Juntos vamos expandir o uso de agrotóxicos sustentáveis. 🍃`;
             feedback.style.color = "#1f6e2f";
             form.reset();
             setTimeout(() => feedback.innerHTML = "", 5000);
         });
+    }
 
-        // Navegação suave
-        document.querySelectorAll('.nav-links a, .btn-primary, .btn-outline').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const hash = this.getAttribute('href');
-                if (hash && hash.startsWith('#')) {
-                    e.preventDefault();
-                    const targetId = hash.substring(1);
-                    const target = document.getElementById(targetId);
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    else if (targetId === "home") window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            });
+    // Navegação suave interna
+    document.querySelectorAll('.nav-links a, .btn-primary, .btn-outline').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const hash = this.getAttribute('href');
+            if (hash && hash.startsWith('#')) {
+                e.preventDefault();
+                const targetId = hash.substring(1);
+                const target = document.getElementById(targetId);
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                else if (targetId === "home") window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>

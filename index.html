@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>🌱 Agrinho 2026 · Quiz Agro Sustentável</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: #f0f7e8;
+            color: #1a3e2c;
+            padding: 1.5rem;
+            line-height: 1.5;
+        }
+
+        /* Tema escuro */
+        body.dark {
+            background: #0e2a1f;
+            color: #e2f0da;
+        }
+
+        body.dark .card,
+        body.dark .quiz-container,
+        body.dark .info-panel,
+        body.dark .theme-toggle,
+        body.dark .btn-option,
+        body.dark .next-btn,
+        body.dark .restart-btn,
+        body.dark .result-card,
+        body.dark footer {
+            background-color: #1e3a2c;
+            color: #e2f0da;
+            border-color: #3b6e4a;
+        }
+
+        body.dark .btn-option {
+            background: #2a4a38;
+            border-color: #4e7b5e;
+        }
+
+        body.dark .btn-option:hover {
+            background: #3a6a4e;
+        }
+
+        body.dark .next-btn,
+        body.dark .restart-btn {
+            background: #2e7d5e;
+            color: white;
+        }
+
+        body.dark .highlight {
+            color: #b3ffcf;
+        }
+
+        /* container principal */
+        .wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* cabeçalho animado */
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeSlideDown 0.9s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #2f6b3e, #92c47c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+            animation: glowPulse 2s infinite alternate;
+        }
+
+        body.dark .hero h1 {
+            background: linear-gradient(135deg, #b9fbc0, #5faf74);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .hero .badge {
+            font-size: 1rem;
+            background: #d9e6b3;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c5a2e;
+        }
+
+        body.dark .hero .badge {
+            background: #2c553a;
+            color: #e2f0da;
+        }
+
+        /* instrutor animado */
+        .instructor {
+            background: #e5f5db;
+            border-radius: 60px;
+            padding: 0.8rem 1.6rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 18px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+        }
+
+        body.dark .instructor {
+            background: #2b4d38;
+        }
+
+        .avatar {
+            font-size: 2rem;
+            animation: bounceSoft 2s infinite;
+        }
+
+        /* grid info + quiz */
+        .grid-2col {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .info-panel {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 2rem;
+            padding: 1.8rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            border: 1px solid #cfdfc3;
+            backdrop-filter: blur(2px);
+        }
+
+        .quiz-container {
+            flex: 1.4;
+            min-width: 280px;
+            background: white;
+            border-radius: 2rem;
+            padding: 1.8rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            border: 1px solid #cfdfc3;
+        }
+
+        .section-title {
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+            border-left: 6px solid #6aa84f;
+            padding-left: 0.8rem;
+            animation: slideMark 0.6s ease;
+        }
+
+        .topic-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .topic-list li {
+            margin: 0.9rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .topic-list li::before {
+            content: "🌾";
+            font-size: 1.2rem;
+        }
+
+        .positive-point, .negative-point {
+            font-size: 0.95rem;
+            margin: 12px 0;
+            padding-left: 1rem;
+            border-left: 3px solid;
+        }
+
+        .positive-point { border-left-color: #4caf50; }
+        .negative-point { border-left-color: #f5a623; }
+
+        /* quiz */
+        .question-text {
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            line-height: 1.3;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 2rem 0;
+        }
+
+        .btn-option {
+            background: #f6fef0;
+            border: 2px solid #bdd9a6;
+            border-radius: 60px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            color: inherit;
+        }
+
+        .btn-option:hover {
+            transform: scale(0.98);
+            background: #e2f2d6;
+            border-color: #6f9e4b;
+        }
+
+        .btn-option.selected {
+            background: #c8e6b5;
+            border-color: #3c7a2e;
+            box-shadow: 0 0 0 2px #9fdf7e;
+        }
+
+        body.dark .btn-option.selected {
+            background: #3f7854;
+            border-color: #96dd82;
+        }
+
+        .feedback {
+            font-size: 1rem;
+            padding: 12px;
+            border-radius: 32px;
+            background: #eef3e9;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .next-btn, .restart-btn {
+            background: #3f8b40;
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-right: 12px;
+        }
+
+        .next-btn:hover, .restart-btn:hover {
+            background: #2c6e2f;
+            transform: translateY(-2px);
+        }
+
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .progress {
+            font-weight: 600;
+            background: #d9e6b3;
+            padding: 6px 14px;
+            border-radius: 50px;
+        }
+
+        body.dark .progress {
+            background: #2d5a3e;
+        }
+
+        .result-card {
+            text-align: center;
+            background: #eef3e9;
+            border-radius: 2rem;
+            padding: 2rem;
+        }
+
+        .restart-btn {
+            background: #eb9e3e;
+        }
+        .restart-btn:hover {
+            background: #ce7d27;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.85rem;
+            padding: 1rem;
+            border-top: 1px solid #c7ddb5;
+        }
+
+        /* animacoes */
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 0px #a8e6a0; }
+            100% { text-shadow: 0 0 5px #b0f0a0; }
+        }
+
+        @keyframes bounceSoft {
+            0%,100%{ transform: translateY(0); }
+            50%{ transform: translateY(-5px); }
+        }
+
+        @keyframes slideMark {
+            from { opacity: 0; transform: translateX(-15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* toggle botao dark/light */
+        .theme-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #fff;
+            border: none;
+            border-radius: 60px;
+            padding: 12px 18px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 99;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: monospace;
+        }
+
+        @media (max-width: 780px) {
+            body { padding: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .question-text { font-size: 1.3rem; }
+            .section-title { font-size: 1.4rem; }
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #2e6733;
+        }
+        body.dark .highlight {
+            color: #c3ffb2;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="hero">
+        <h1>🌾 AGRINHO 2026</h1>
+        <div style="font-size: 1.2rem; font-weight: 500;">Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente.</div>
+        <div class="instructor">
+            <span class="avatar">🧑‍🌾🌱</span>
+            <span><strong>Instrutor Agrinho</strong> · Vamos testar seus conhecimentos!</span>
+        </div>
+        <div class="badge">🎯 Quiz Oficial · 5 perguntas</div>
+    </div>
+
+    <div class="grid-2col">
+        <!-- painel informativo + pontos positivos/negativos -->
+        <div class="info-panel">
+            <div class="section-title">🌱 Sustentabilidade no Agro</div>
+            <p><span class="highlight">"Produzir alimentos e preservar a natureza podem (e devem) caminhar juntos!"</span></p>
+            <div style="margin: 15px 0 8px 0;"><strong>✅ Pontos positivos dos agrotóxicos (com responsabilidade)</strong></div>
+            <div class="positive-point">➕ Aumentam a produção de alimentos.</div>
+            <div class="positive-point">➕ Protegem plantações de pragas e doenças.</div>
+            <div class="positive-point">➕ Reduzem prejuízos no campo.</div>
+            <div class="positive-point">➕ Ajudam no abastecimento da população.</div>
+
+            <div style="margin: 20px 0 8px 0;"><strong>⚠️ Pontos negativos (uso excessivo)</strong></div>
+            <div class="negative-point">❌ Contaminam rios e solos.</div>
+            <div class="negative-point">❌ Prejudicam animais e polinizadores.</div>
+            <div class="negative-point">❌ Riscos à saúde humana.</div>
+            <div class="negative-point">❌ Desequilíbrio ambiental.</div>
+
+            <div class="section-title" style="margin-top: 18px;">🌍 Caminho sustentável</div>
+            <ul class="topic-list">
+                <li>Usar agrotóxicos com responsabilidade</li>
+                <li>Alternativas naturais e biológicas</li>
+                <li>Tecnologia e inovação no campo</li>
+                <li>Proteger meio ambiente e saúde</li>
+            </ul>
+            <div style="font-style: italic; margin-top: 12px;">🚜 Tecnologia no Agro: drones, sensoriamento, plantio inteligente.</div>
+        </div>
+
+        <!-- ÁREA DO QUIZ DINÂMICO -->
+        <div class="quiz-container" id="quizArea">
+            <!-- conteúdo será injetado via js -->
+            <div id="quizDynamic"></div>
+        </div>
+    </div>
+    <footer>
+        🌿 Agrinho 2026 — juntos por um agro forte e futuro sustentável. | Conteúdos, quiz e reflexão para um campo mais consciente.
+    </footer>
+</div>
+<button class="theme-toggle" id="darkmodeToggle" aria-label="Alternar tema">🌓 Modo escuro/claro</button>
+
+<script>
+    // ---------- BASE DE DADOS DO QUIZ (conforme enunciado) ----------
+    const questions = [
+        {
+            text: "Qual é o principal objetivo da agricultura sustentável?",
+            options: [
+                "a) Produzir mais sem se preocupar com a natureza",
+                "b) Equilibrar produção e preservação ambiental",
+                "c) Usar mais máquinas possíveis",
+                "d) Diminuir toda produção agrícola"
+            ],
+            correct: 1, // índice 0-based -> b)
+            explanation: "✅ Agricultura sustentável busca o equilíbrio entre produtividade e respeito ao meio ambiente."
+        },
+        {
+            text: "O que pode acontecer com o uso excessivo de agrotóxicos?",
+            options: [
+                "a) Melhorar a qualidade dos rios",
+                "b) Aumentar as florestas",
+                "c) Contaminar solos e águas",
+                "d) Não causar nenhum efeito"
+            ],
+            correct: 2,
+            explanation: "⚠️ O excesso de agrotóxicos contamina solo, lençóis freáticos e rios, prejudicando ecossistemas."
+        },
+        {
+            text: "Qual tecnologia ajuda o campo de forma sustentável?",
+            options: [
+                "a) Desperdício de água",
+                "b) Queimadas ilegais",
+                "c) Máquinas e drones agrícolas",
+                "d) Poluição dos rios"
+            ],
+            correct: 2,
+            explanation: "🚁 Drones e máquinas de precisão reduzem desperdícios e aplicam insumos de forma localizada."
+        },
+        {
+            text: "Por que preservar o meio ambiente é importante?",
+            options: [
+                "a) Para garantir recursos às próximas gerações",
+                "b) Apenas para deixar o campo bonito",
+                "c) Porque não influencia a produção",
+                "d) Para diminuir os alimentos"
+            ],
+            correct: 0,
+            explanation: "🌎 Preservar recursos naturais assegura às futuras gerações acesso a água, solo fértil e biodiversidade."
+        },
+        {
+            text: "Qual atitude ajuda o planeta?",
+            options: [
+                "a) Desmatar áreas protegidas",
+                "b) Jogar lixo nos rios",
+                "c) Economizar água e cuidar da natureza",
+                "d) Usar produtos sem responsabilidade"
+            ],
+            correct: 2,
+            explanation: "💧 Economizar água, reciclar, consumir consciente e proteger a natureza são atitudes que ajudam o planeta."
+        }
+    ];
+
+    let currentIndex = 0;
+    let userAnswers = new Array(questions.length).fill(null); // armazena índice da resposta selecionada
+    let quizFinished = false;
+
+    // Elemento raiz
+    const quizDynamic = document.getElementById("quizDynamic");
+
+    // Função principal para renderizar o estado atual (pergunta ou resultado)
+    function renderQuiz() {
+        if (!quizDynamic) return;
+        // Se terminou todas as questões ou se finalizou por resposta (todas respondidas)
+        if (quizFinished || (userAnswers.every(ans => ans !== null) && currentIndex >= questions.length)) {
+            renderResult();
+            return;
+        }
+
+        // Caso ainda tenha pergunta atual
+        if (currentIndex < questions.length) {
+            renderQuestion(currentIndex);
+        } else {
+            // Quando todas respondidas mas sem setar finished ainda
+            if (userAnswers.every(ans => ans !== null)) {
+                renderResult();
+            } else {
+                // caso index esteja no final mas alguma resposta faltando - raro, mas seguro
+                currentIndex = userAnswers.findIndex(ans => ans === null);
+                if (currentIndex === -1) renderResult();
+                else renderQuestion(currentIndex);
+            }
+        }
+    }
+
+    function renderQuestion(idx) {
+        const q = questions[idx];
+        const selectedIdx = userAnswers[idx];
+        let optionsHtml = "";
+        q.options.forEach((opt, optIndex) => {
+            const isSelected = (selectedIdx === optIndex);
+            const selectedClass = isSelected ? "selected" : "";
+            optionsHtml += `<button class="btn-option ${selectedClass}" data-opt-index="${optIndex}">${opt}</button>`;
+        });
+
+        const feedbackHtml = (selectedIdx !== null) 
+            ? `<div class="feedback">${q.explanation}</div>` 
+            : `<div class="feedback" style="background: #f9f2e0;">💡 Selecione uma alternativa para prosseguir</div>`;
+
+        const progressText = `Questão ${idx+1} de ${questions.length}`;
+
+        const html = `
+            <div>
+                <div class="progress" style="display:inline-block; margin-bottom:10px;">📋 ${progressText}</div>
+                <div class="question-text">🌿 ${q.text}</div>
+                <div class="options" id="optionsContainer">
+                    ${optionsHtml}
+                </div>
+                ${feedbackHtml}
+                <div class="quiz-footer">
+                    <div>
+                        ${idx > 0 ? `<button class="next-btn" id="prevQuestionBtn" style="background:#7d9e6e;">◀ Anterior</button>` : ''}
+                        <button class="next-btn" id="nextQuestionBtn">${idx === questions.length-1 ? 'Finalizar Quiz' : 'Próxima ➤'}</button>
+                    </div>
+                    <button class="restart-btn" id="resetQuizBtn">↺ Reiniciar Quiz</button>
+                </div>
+            </div>
+        `;
+
+        quizDynamic.innerHTML = html;
+
+        // Adicionar eventos para os botões de opção
+        const optionBtns = document.querySelectorAll(".btn-option");
+        optionBtns.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const optIndex = parseInt(btn.dataset.optIndex);
+                if (userAnswers[idx] === optIndex) return; // já selecionado
+                // salvar resposta
+                userAnswers[idx] = optIndex;
+                // re-renderizar a mesma pergunta para mostrar feedback + estilo
+                renderQuestion(idx);
+            });
+        });
+
+        // Botão próximo/anterior
+        const nextBtn = document.getElementById("nextQuestionBtn");
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+                if (userAnswers[idx] === null) {
+                    alert("👉 Por favor, escolha uma resposta antes de continuar!");
+                    return;
+                }
+                if (idx === questions.length - 1) {
+                    // finalizar e mostrar resultado
+                    quizFinished = true;
+                    renderQuiz();
+                } else {
+                    currentIndex = idx + 1;
+                    renderQuiz();
+                }
+            });
+        }
+
+        const prevBtn = document.getElementById("prevQuestionBtn");
+        if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+                if (currentIndex > 0) {
+                    currentIndex = idx - 1;
+                    renderQuiz();
+                }
+            });
+        }
+
+        const resetBtn = document.getElementById("resetQuizBtn");
+        if (resetBtn) resetBtn.addEventListener("click", resetQuiz);
+    }
+
+    function renderResult() {
+        let totalCorrect = 0;
+        const resultsDetail = [];
+        questions.forEach((q, i) => {
+            const userChoice = userAnswers[i];
+            const isCorrect = (userChoice === q.correct);
+            if (isCorrect) totalCorrect++;
+            const userLetter = userChoice !== null ? String.fromCharCode(97 + userChoice) : "N/I";
+            const correctLetter = String.fromCharCode(97 + q.correct);
+            resultsDetail.push(`
+                <div style="margin-bottom: 14px; border-bottom: 1px dashed #bdd9a6; padding-bottom: 8px;">
+                    <strong>${i+1}. ${q.text}</strong><br>
+                    Sua resposta: ${userChoice !== null ? q.options[userChoice] : "Não respondida"} 
+                    ${isCorrect ? '✅' : '❌'} <br>
+                    <span style="font-size:0.9rem;">Resposta correta: ${q.options[q.correct]}</span><br>
+                    <span style="font-size:0.85rem;">📘 ${q.explanation}</span>
+                </div>
+            `);
+        });
+
+        const scorePercent = Math.round((totalCorrect / questions.length) * 100);
+        let message = "";
+        if (scorePercent === 100) message = "🌟 Perfeito! Você é um guardião do agro sustentável! 🌟";
+        else if (scorePercent >= 80) message = "🌻 Muito bem! Quase lá, continue aprendendo sobre o futuro do campo.";
+        else if (scorePercent >= 60) message = "🍃 Bom! Mas vale revisar os conceitos para um agro mais forte.";
+        else message = "🌱 Vamos estudar mais? O equilíbrio entre produção e meio ambiente é essencial! Releia os pontos positivos e negativos.";
+
+        const resultHtml = `
+            <div class="result-card">
+                <h2>🏆 Resultado do Quiz Agrinho 2026</h2>
+                <div style="font-size: 2rem; font-weight: bold; margin: 15px 0;">${totalCorrect} / ${questions.length}</div>
+                <div style="font-size: 1.3rem; margin-bottom: 20px;">${scorePercent}% de acertos</div>
+                <div style="background: #cfe3c0; border-radius: 24px; padding: 15px; text-align: left; max-height: 400px; overflow-y: auto;">
+                    ${resultsDetail.join('')}
+                </div>
+                <div style="margin: 20px 0; font-size: 1.1rem;">💚 ${message}</div>
+                <button class="restart-btn" id="restartFromResult">🌾 Refazer Quiz 🌾</button>
+            </div>
+        `;
+
+        quizDynamic.innerHTML = resultHtml;
+        const restartBtnResult = document.getElementById("restartFromResult");
+        if (restartBtnResult) restartBtnResult.addEventListener("click", resetQuiz);
+    }
+
+    function resetQuiz() {
+        currentIndex = 0;
+        userAnswers = new Array(questions.length).fill(null);
+        quizFinished = false;
+        renderQuiz();
+    }
+
+    // modo escuro/claro com animação nas letras e persistência simples
+    const themeBtn = document.getElementById("darkmodeToggle");
+    function initTheme() {
+        const savedTheme = localStorage.getItem("agrinhoTheme");
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark");
+        } else if (savedTheme === "light") {
+            document.body.classList.remove("dark");
+        } else {
+            // preferência do sistema? opcional, manter claro
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            if (prefersDark) document.body.classList.add("dark");
+        }
+    }
+
+    function toggleTheme() {
+        if (document.body.classList.contains("dark")) {
+            document.body.classList.remove("dark");
+            localStorage.setItem("agrinhoTheme", "light");
+        } else {
+            document.body.classList.add("dark");
+            localStorage.setItem("agrinhoTheme", "dark");
+        }
+    }
+
+    if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
+    initTheme();
+
+    // Inicializar quiz
+    renderQuiz();
+
+    // também adicionar animação sutil nos títulos e hover (já incluso)
+    // Garantir que quando o usuário clicar nas opções os estilos mudem corretamente
+    // Adicionar evento extra para evitar conflitoito no modo escuro
+    no modo escuro
+    escuro
+    escuro
+    // Se houver alter // Se houver alter // Se houver alter // Se houver alteração dinação dinâmação dinâmica,ação dinâmâmica,ica, a a classe a classe darkica, a classe dark dark já já já classe dark já está no body e os est está no body e os est está no body e os est está no body e os estilos seilos seilos se aplicam.
+   ilos se aplicam.
+    aplicam.
+    // Corrig // Corrig aplicam.
+    // Corrig // Corrigir possir possir possir possivelivelivelivel que que que que o feedback din o feedback din o feedback o feedback dinâmico nãoâmico não dinâmico nãoâmico não per per per perca oca oca oca o contexto
+    // tudo contexto
+    // tudo contexto
+    // tudo contexto
+    // tudo ok ok ok ok.
+.
+.
+.
+    // inform       // inform    // informaco // informacoacoacoeseseses extras sobre extras sobre extras sobre extras sobre "Você "Você e "Você e "Você e e o futuro" " o futuro" " o futuro" " o futuro" "Produção responsProdução responsProdução responsProdução responsável" apareceável" aparece no painável" aparece no painável" aparece no painel lateralel lateral no painel lateral
+    // A
+    // A
+    // Ael lateral
+    // Ajustjustjuste dejuste dee de detalhe detalhee de detalhe detalhe:: repet: repet: repet repetição de íição de ícones eição de ícones eição de ícones e animações animaçõescones e animações nas nas animações nas letras com letras com hover nas letras com letras com hover hover
+
+ hover
+
+
+
+    // Ad    // Ad
+
+    //    // Adicionar umicionar um Adicionar umicionar um efe efe efe efeito extra deito extra de "ito extra de "ito extra de " "digdigdigdigitação" noitação" noitação" no instritação" no instr instr instrutor viautor viautor viautor via CSS CSS CSS? deix CSS? deix? deix? deixamos asamos asamos as animações suamos as animações su animações su animações suaves.
+aves.
+    consoleaves.
+    consoleaves.
+    console.log    console.log(".log(".log("("🌾🌾🌾🌾 Site Agrinho Site Agrinho Site Agrinho Site Agrinho  2026 at 2026 at 2026 at2026 ativo —ivo —ivo —ivo — quiz com quiz com quiz com temas quiz com temas temas temas sustent sustent sustent sustentáveis!");
+áveis!");
+áveis!");
+áveis!");
+</script>
+</script>
+</script>
+</body>
+</</script>
+</body>
+</</body>
+</</body>
+</html>
+```html>
+```html>
+```html>

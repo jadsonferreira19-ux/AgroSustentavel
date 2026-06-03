@@ -3,105 +3,495 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Agrotóxico Sustentável | Quizz + Inovação Verde</title>
+    <title>Agrotóxico Sustentável | Tecnologia e Agricultura Viva</title>
+    <!-- Google Fonts + Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: #f9fef7; color: #1a2e1f; line-height: 1.5; scroll-behavior: smooth; }
-        
-        /* SPLASH */
-        .splash-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #0b3b1a 0%, #1c5a2d 100%);
-            z-index: 2000; display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-            opacity: 1; visibility: visible;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .splash-overlay.hide-splash { opacity: 0; visibility: hidden; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fef7;
+            color: #1a2e1f;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* ========== SPLASH / PÁGINA DE ENTRADA ========== */
+        .splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0b3b1a 0%, #1c5a2d 100%);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .splash-overlay.hide-splash {
+            opacity: 0;
+            visibility: hidden;
+        }
+
         .splash-card {
-            background: rgba(255,255,255,0.97); max-width: 550px; width: 90%;
-            border-radius: 64px; padding: 48px 32px; text-align: center;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.3); animation: fadeInUp 0.7s ease;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(2px);
+            max-width: 550px;
+            width: 90%;
+            border-radius: 64px;
+            padding: 48px 32px;
+            text-align: center;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.7s ease;
             border: 1px solid #c6e7b5;
         }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .splash-card i { font-size: 4rem; color: #2b7e3a; background: #e0f2da; padding: 20px; border-radius: 80px; margin-bottom: 24px; }
-        .splash-card h1 { font-size: 2.2rem; font-weight: 800; color: #124d22; margin-bottom: 12px; }
-        .splash-card .tagline { font-size: 1rem; color: #2a6838; margin-bottom: 28px; font-weight: 500; }
-        .splash-card p { color: #2d4a2f; margin-bottom: 32px; font-size: 1rem; }
-        .splash-buttons { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
-        .btn-splash { padding: 12px 32px; border-radius: 60px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
-        .btn-entrar { background-color: #1f6e2f; color: white; }
-        .btn-entrar:hover { background-color: #0e551e; transform: scale(1.02); }
-        .btn-saibamais { background: transparent; border: 2px solid #1f6e2f; color: #1f6e2f; }
-        .btn-saibamais:hover { background: #1f6e2f10; transform: scale(1.02); }
-        
-        /* SITE PRINCIPAL */
-        .main-site { opacity: 0; transition: opacity 0.8s ease; }
-        .main-site.visible { opacity: 1; }
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-        
-        .header { background: linear-gradient(135deg, #d4e9d0 0%, #a9c9a3 100%); padding: 20px 0 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-        .nav-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-        .logo h1 { font-size: 1.6rem; font-weight: 800; color: #1f4f2b; }
-        .logo p { font-size: 0.75rem; font-weight: 500; color: #2a5e2e; }
-        .nav-links { display: flex; gap: 28px; flex-wrap: wrap; }
-        .nav-links a { text-decoration: none; font-weight: 600; color: #1f3b24; transition: 0.2s; font-size: 1rem; }
-        .nav-links a:hover { color: #095e1a; border-bottom: 2px solid #2b7a3b; }
-        
-        .hero { background: linear-gradient(112deg, #e1f3da 0%, #c8e6c0 100%); padding: 70px 0; border-radius: 0 0 48px 48px; margin-bottom: 40px; }
-        .hero-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; justify-content: space-between; }
-        .hero-text { flex: 1; }
-        .hero-text h2 { font-size: 2.6rem; font-weight: 800; color: #1c4d27; line-height: 1.2; margin-bottom: 20px; }
-        .hero-text .highlight { color: #217a32; border-left: 5px solid #3ba84a; padding-left: 18px; font-weight: 700; }
-        .hero-text p { font-size: 1.2rem; color: #2b482f; margin-bottom: 28px; }
-        .btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        .btn { padding: 12px 28px; border-radius: 40px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
-        .btn-primary { background-color: #1f6e2f; color: white; border: none; }
-        .btn-primary:hover { background-color: #0e551e; transform: translateY(-2px); }
-        .btn-outline { background: transparent; border: 2px solid #1f6e2f; color: #1f6e2f; }
-        .hero-img { flex: 0.9; text-align: center; }
-        .hero-img img { max-width: 100%; width: 380px; border-radius: 30px; box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15); }
-        
-        section { margin: 70px 0; }
-        .section-title { text-align: center; font-size: 2rem; font-weight: 800; color: #1b4b27; margin-bottom: 48px; position: relative; }
-        .section-title:after { content: ''; width: 70px; height: 4px; background: #54b46b; display: block; margin: 12px auto 0; border-radius: 4px; }
-        
-        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
-        .card-imagem { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 12px 24px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; }
-        .card-imagem:hover { transform: translateY(-8px); box-shadow: 0 24px 40px rgba(34,139,34,0.15); }
-        .card-imagem img { width: 100%; height: 240px; object-fit: cover; transition: transform 0.4s ease; background: #e8f5e5; }
-        .card-imagem:hover img { transform: scale(1.03); }
-        .legenda { padding: 18px 16px 22px; text-align: center; background: white; }
-        .legenda h3 { font-size: 1.2rem; color: #1f6e2f; margin-bottom: 6px; }
-        
-        .projetos { background-color: #eef7ea; border-radius: 48px; padding: 50px 30px; }
-        .projeto-item { background: white; border-radius: 28px; padding: 24px; margin-bottom: 24px; box-shadow: 0 6px 14px rgba(0,0,0,0.05); }
-        
-        .impacto-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin: 40px 0; }
-        .stat { text-align: center; background: #ffffffdd; backdrop-filter: blur(4px); padding: 25px 20px; border-radius: 48px; width: 200px; border: 1px solid #bcddae; }
-        .stat-number { font-size: 2.8rem; font-weight: 800; color: #1a732f; }
-        
-        .quizz-container { background: white; border-radius: 48px; padding: 40px 30px; box-shadow: 0 20px 35px rgba(0,0,0,0.05); max-width: 900px; margin: 20px auto 0; border: 1px solid #d9efcf; }
-        .quizz-pergunta { font-size: 1.7rem; font-weight: 700; color: #124d22; margin-bottom: 28px; text-align: center; }
-        .quizz-opcoes { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
-        .opcao { background: #f5fef2; border: 2px solid #cce2c4; border-radius: 60px; padding: 14px 22px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 12px; }
-        .opcao:hover { background: #e3f3db; border-color: #6bbf4a; transform: translateX(6px); }
-        .opcao.selected { background: #c8e6c0; border-color: #2b7a3b; font-weight: 700; }
-        .btn-next { background-color: #1f6e2f; color: white; border: none; padding: 14px 28px; border-radius: 60px; font-weight: bold; font-size: 1rem; cursor: pointer; display: block; margin: 0 auto; width: 220px; }
-        .btn-next:hover { background-color: #0e551e; }
-        .resultado-final { text-align: center; background: #e0f2da; border-radius: 40px; padding: 30px; margin-top: 20px; }
-        
-        footer { background: #1c3b21; color: #cfebcd; padding: 40px 0 20px; border-radius: 32px 32px 0 0; margin-top: 70px; }
-        .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; margin-bottom: 30px; }
-        .copy { text-align: center; border-top: 1px solid #2b5933; padding-top: 24px; font-size: 0.85rem; }
-        
+
+        .splash-card i {
+            font-size: 4rem;
+            color: #2b7e3a;
+            background: #e0f2da;
+            padding: 20px;
+            border-radius: 80px;
+            margin-bottom: 24px;
+        }
+
+        .splash-card h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #124d22;
+            margin-bottom: 12px;
+        }
+
+        .splash-card .tagline {
+            font-size: 1rem;
+            color: #2a6838;
+            margin-bottom: 28px;
+            font-weight: 500;
+        }
+
+        .splash-card p {
+            color: #2d4a2f;
+            margin-bottom: 32px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .splash-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+        }
+
+        .btn-splash {
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-entrar {
+            background-color: #1f6e2f;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .btn-entrar:hover {
+            background-color: #0e551e;
+            transform: scale(1.02);
+        }
+
+        .btn-saibamais {
+            background: transparent;
+            border: 2px solid #1f6e2f;
+            color: #1f6e2f;
+        }
+
+        .btn-saibamais:hover {
+            background: #1f6e2f10;
+            transform: scale(1.02);
+        }
+
+        /* ========== SITE PRINCIPAL ========== */
+        .main-site {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .main-site.visible {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #d4e9d0 0%, #a9c9a3 100%);
+            padding: 20px 0 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #1f4f2b;
+        }
+
+        .logo p {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #2a5e2e;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1f3b24;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #095e1a;
+            border-bottom: 2px solid #2b7a3b;
+        }
+
+        .hero {
+            background: linear-gradient(112deg, #e1f3da 0%, #c8e6c0 100%);
+            padding: 70px 0;
+            border-radius: 0 0 48px 48px;
+            margin-bottom: 40px;
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #1c4d27;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text .highlight {
+            color: #217a32;
+            border-left: 5px solid #3ba84a;
+            padding-left: 18px;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #2b482f;
+            margin-bottom: 28px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: #1f6e2f;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0e551e;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1f6e2f;
+            color: #1f6e2f;
+        }
+
+        .hero-img {
+            flex: 0.9;
+            text-align: center;
+        }
+
+        .hero-img img {
+            max-width: 100%;
+            width: 380px;
+            border-radius: 30px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+            object-fit: cover;
+        }
+
+        section {
+            margin: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1b4b27;
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background: #54b46b;
+            display: block;
+            margin: 12px auto 0;
+            border-radius: 4px;
+        }
+
+        /* Galeria com imagens reais de banco (Pexels) - agricultura sustentável */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card-imagem {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card-imagem:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 40px rgba(34, 139, 34, 0.15);
+        }
+
+        .card-imagem img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            background-color: #eaf7e5;
+        }
+
+        .card-imagem:hover img {
+            transform: scale(1.03);
+        }
+
+        .legenda {
+            padding: 18px 16px 22px;
+            text-align: center;
+            background: white;
+        }
+
+        .legenda h3 {
+            font-size: 1.2rem;
+            color: #1f6e2f;
+            margin-bottom: 6px;
+        }
+
+        .legenda p {
+            font-size: 0.9rem;
+            color: #3c5e3f;
+        }
+
+        .projetos {
+            background-color: #eef7ea;
+            border-radius: 48px;
+            padding: 50px 30px;
+        }
+
+        .projeto-item {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+
+        .impacto-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            padding: 25px 20px;
+            border-radius: 48px;
+            width: 200px;
+            border: 1px solid #bcddae;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1a732f;
+        }
+
+        /* Quizz */
+        .quizz-container {
+            background: white;
+            border-radius: 48px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+            max-width: 900px;
+            margin: 20px auto 0;
+            border: 1px solid #d9efcf;
+        }
+
+        .quizz-pergunta {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #124d22;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .quizz-opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .opcao {
+            background: #f5fef2;
+            border: 2px solid #cce2c4;
+            border-radius: 60px;
+            padding: 14px 22px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .opcao:hover {
+            background: #e3f3db;
+            border-color: #6bbf4a;
+            transform: translateX(6px);
+        }
+
+        .opcao.selected {
+            background: #c8e6c0;
+            border-color: #2b7a3b;
+            font-weight: 700;
+        }
+
+        .btn-next {
+            background-color: #1f6e2f;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            width: 220px;
+        }
+
+        .resultado-final {
+            text-align: center;
+            background: #e0f2da;
+            border-radius: 40px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #1c3b21;
+            color: #cfebcd;
+            padding: 40px 0 20px;
+            border-radius: 32px 32px 0 0;
+            margin-top: 70px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 28px;
+            margin-bottom: 30px;
+        }
+
+        .copy {
+            text-align: center;
+            border-top: 1px solid #2b5933;
+            padding-top: 24px;
+            font-size: 0.85rem;
+        }
+
         @media (max-width: 780px) {
             .hero-text h2 { font-size: 2rem; }
             .splash-card h1 { font-size: 1.8rem; }
@@ -111,7 +501,7 @@
 </head>
 <body>
 
-<!-- PÁGINA DE ENTRADA SPLASH -->
+<!-- PÁGINA DE ENTRADA -->
 <div id="splashScreen" class="splash-overlay">
     <div class="splash-card">
         <i class="fas fa-seedling"></i>
@@ -156,21 +546,22 @@
                         </div>
                     </div>
                     <div class="hero-img">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 350'%3E%3Crect width='400' height='350' fill='%23c8e6c0'/%3E%3Ccircle cx='200' cy='130' r='70' fill='%234caf50'/%3E%3Cpath d='M150 210 L250 210 L230 270 L170 270 Z' fill='%233b7a3e'/%3E%3Crect x='180' y='270' width='40' height='50' fill='%238B5A2B'/%3E%3Cpath d='M100 110 L70 60 L140 60 Z' fill='%23F9A825'/%3E%3Cpath d='M300 110 L270 60 L340 60 Z' fill='%23F9A825'/%3E%3Ctext x='120' y='330' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🌱 Bioinsumos%3C/text%3E%3Ctext x='240' y='330' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🐞 Controle Biológico%3C/text%3E%3C/svg%3E"
-                             alt="Agricultura sustentável">
+                        <img src="https://images.pexels.com/photos/164504/pexels-photo-164504.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                             alt="Agricultura sustentável" 
+                             loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- GALERIA COM SVG -->
+        <!-- GALERIA COM IMAGENS REAIS DE AGRICULTURA (BANCO PEXELS) -->
         <div class="container" id="galeria">
             <div class="section-title">📸 Tecnologias de baixo impacto – na prática</div>
             <div class="galeria-grid" id="galeriaDinamica"></div>
-            <p style="text-align:center; margin-top:10px;">💚 Práticas sustentáveis que substituem agrotóxicos convencionais.</p>
+            <p style="text-align:center; margin-top:10px;">💚 Imagens reais de agricultura sustentável, controle biológico e boas práticas no campo.</p>
         </div>
 
-        <!-- PROJETOS -->
+        <!-- PROJETOS E INOVAÇÕES -->
         <div class="container projetos" id="projetos">
             <div class="section-title">🧬 Alternativas ecológicas em ação</div>
             <div class="projeto-item">
@@ -216,37 +607,38 @@
 </div>
 
 <script>
-    // IMAGENS SVG - 100% FUNCIONAIS, NUNCA QUEBRAM
+    // ========== IMAGENS REAIS DO BANCO PEXELS (AGRICULTURA SUSTENTÁVEL) ==========
+    // Todas as imagens são de alta qualidade e diretamente relacionadas ao tema
     const imagens = [
         {
-            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Ccircle cx='100' cy='150' r='40' fill='%234caf50'/%3E%3Ccircle cx='250' cy='150' r='40' fill='%2366bb6a'/%3E%3Ctext x='120' y='250' fill='%232d6a4f' font-size='18' font-weight='bold'%3E🐞 Controle Biológico%3C/text%3E%3C/svg%3E",
-            titulo: "Controle Biológico",
-            descricao: "Inimigos naturais combatem pragas sem veneno."
+            url: "https://images.pexels.com/photos/2447568/pexels-photo-2447568.jpeg?auto=compress&cs=tinysrgb&w=600",
+            titulo: "Plantio direto e conservação do solo",
+            descricao: "Técnica que mantém palha sobre o solo, reduz erosão e elimina necessidade de herbicidas."
         },
         {
-            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Crect x='50' y='100' width='100' height='80' fill='%238B5A2B'/%3E%3Crect x='200' y='100' width='100' height='80' fill='%236b8e23'/%3E%3Ctext x='80' y='240' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🌿 Extratos Vegetais%3C/text%3E%3C/svg%3E",
-            titulo: "Bioinsumos",
-            descricao: "Extratos de plantas como nim e cravo-da-índia."
+            url: "https://images.pexels.com/photos/1845347/pexels-photo-1845347.jpeg?auto=compress&cs=tinysrgb&w=600",
+            titulo: "Controle biológico com joaninhas",
+            descricao: "Predadores naturais substituem inseticidas químicos no controle de pulgões."
         },
         {
-            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Ccircle cx='200' cy='130' r='50' fill='%23388e3c'/%3E%3Crect x='150' y='200' width='100' height='40' fill='%2396622b'/%3E%3Ctext x='140' y='270' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🌳 Agrofloresta%3C/text%3E%3C/svg%3E",
-            titulo: "Agricultura Regenerativa",
-            descricao: "Sistemas agroflorestais reduzem necessidade de defensivos."
+            url: "https://images.pexels.com/photos/7420360/pexels-photo-7420360.jpeg?auto=compress&cs=tinysrgb&w=600",
+            titulo: "Biopreparados caseiros",
+            descricao: "Agricultores produzem caldas e extratos vegetais para proteger as lavouras."
         },
         {
-            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Cpath d='M100 200 L300 200 L250 100 L150 100 Z' fill='%234caf50'/%3E%3Crect x='180' y='200' width='40' height='60' fill='%238B5A2B'/%3E%3Ctext x='120' y='280' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🚜 Plantio Direto%3C/text%3E%3C/svg%3E",
-            titulo: "Manejo Ecológico",
-            descricao: "Técnicas que preservam o solo e evitam erosão."
+            url: "https://images.pexels.com/photos/5462812/pexels-photo-5462812.jpeg?auto=compress&cs=tinysrgb&w=600",
+            titulo: "Agrofloresta e biodiversidade",
+            descricao: "Sistemas agroflorestais reduzem pragas naturalmente e melhoram o solo."
         },
         {
-            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Cpath d='M100 150 L150 100 L200 150 L150 200 Z' fill='%234caf50'/%3E%3Ccircle cx='250' cy='150' r='40' fill='%23F9A825'/%3E%3Ctext x='120' y='260' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🧪 Pesquisa Científica%3C/text%3E%3C/svg%3E",
-            titulo: "Inovação Científica",
-            descricao: "Novas tecnologias para substituir agrotóxicos."
+            url: "https://images.pexels.com/photos/2352905/pexels-photo-2352905.jpeg?auto=compress&cs=tinysrgb&w=600",
+            titulo: "Monitoramento com drones",
+            descricao: "Tecnologia que identifica focos de praga para aplicação localizada e reduzida."
         },
         {
-            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Crect x='80' y='120' width='80' height='100' fill='%2366bb6a'/%3E%3Crect x='220' y='120' width='80' height='100' fill='%234caf50'/%3E%3Ctext x='130' y='260' fill='%232d6a4f' font-size='16' font-weight='bold'%3E👩‍🌾 Agricultura Familiar%3C/text%3E%3C/svg%3E",
-            titulo: "Agricultura Familiar",
-            descricao: "Pequenos produtores adotando práticas sustentáveis."
+            url: "https://images.pexels.com/photos/5999968/pexels-photo-5999968.jpeg?auto=compress&cs=tinysrgb&w=600",
+            titulo: "Produção de bioinsumos",
+            descricao: "Biofábricas comunitárias multiplicam microrganismos benéficos às plantas."
         }
     ];
 
@@ -257,7 +649,7 @@
         for (let img of imagens) {
             html += `
                 <div class="card-imagem">
-                    <img src="${img.url}" alt="${img.titulo}" loading="lazy">
+                    <img src="${img.url}" alt="${img.titulo}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/4caf50/ffffff?text=Imagem+Agricultura'">
                     <div class="legenda">
                         <h3><i class="fas fa-camera"></i> ${img.titulo}</h3>
                         <p>${img.descricao}</p>
@@ -268,17 +660,17 @@
         container.innerHTML = html;
     }
 
-    // QUIZZ
+    // ========== QUIZZ INTERATIVO ==========
     const perguntas = [
-        { texto: "O que são agrotóxicos sustentáveis?", opcoes: ["Produtos químicos sintéticos", "Alternativas como biopesticidas e controle biológico", "Fertilizantes nitrogenados", "Transgênicos"], correta: 1 },
-        { texto: "Qual é um exemplo de controle biológico?", opcoes: ["Glifosato", "Queimadas", "Liberação de joaninhas", "Irrigação"], correta: 2 },
-        { texto: "Benefício dos bioinsumos?", opcoes: ["Maior toxicidade", "Degradação rápida e menor impacto ambiental", "Aumento da acidez da água", "Uso exclusivo industrial"], correta: 1 },
-        { texto: "O que a agricultura regenerativa promove?", opcoes: ["Dependência de venenos", "Saúde do solo e biodiversidade", "Monocultura extensiva", "Desmatamento"], correta: 1 }
+        { texto: "O que são agrotóxicos sustentáveis?", opcoes: ["Produtos químicos sintéticos de alta eficiência", "Alternativas de baixo impacto como biopesticidas e controle biológico", "Fertilizantes nitrogenados", "Transgênicos resistentes a pragas"], correta: 1 },
+        { texto: "Qual destes é um exemplo de controle biológico de pragas?", opcoes: ["Uso de glifosato", "Queimadas controladas", "Liberação de joaninhas para controlar pulgões", "Irrigação por aspersão"], correta: 2 },
+        { texto: "Qual o principal benefício dos bioinsumos em comparação aos agrotóxicos convencionais?", opcoes: ["Maior toxicidade ao solo", "Degradação mais rápida e menor impacto ambiental", "Aumento da acidez da água", "Somente uso industrial"], correta: 1 },
+        { texto: "O que a agricultura regenerativa promove?", opcoes: ["Dependência de defensivos químicos", "Saúde do solo e biodiversidade, reduzindo necessidade de venenos", "Monocultura extensiva", "Desmatamento controlado"], correta: 1 }
     ];
 
     let currentQuestion = 0;
     let respostasUsuario = [];
-    let quizzContainer = document.getElementById('quizzContainer');
+    const quizzContainer = document.getElementById('quizzContainer');
 
     function renderizarQuizz() {
         if (currentQuestion < perguntas.length) {
@@ -310,7 +702,10 @@
     function finalizarQuizz() {
         let acertos = 0;
         perguntas.forEach((p, idx) => { if (respostasUsuario[idx] === p.correta) acertos++; });
-        let mensagem = acertos === 4 ? '🌟 Perfeito! Você é um expert!' : acertos >= 3 ? '🌱 Muito bom!' : acertos >= 2 ? '📘 Bom, mas pode aprender mais!' : '🌿 Revise as informações do site!';
+        let mensagem = acertos === 4 ? '🌟 Perfeito! Você é um expert em agrotóxicos sustentáveis!' : 
+                       acertos >= 3 ? '🌱 Muito bom! Continue divulgando práticas verdes.' :
+                       acertos >= 2 ? '📘 Bom, mas pode aprender mais. Explore o site!' : 
+                       '🌿 Que tal revisar as informações sobre controle biológico e bioinsumos?';
         quizzContainer.innerHTML = `
             <div class="resultado-final">
                 <i class="fas fa-trophy" style="font-size: 3rem; color:#e6b422;"></i>
@@ -322,7 +717,7 @@
         document.getElementById('refazerQuizz')?.addEventListener('click', () => { currentQuestion = 0; respostasUsuario = []; renderizarQuizz(); });
     }
 
-    // SPLASH
+    // ========== SPLASH + INICIALIZAÇÃO ==========
     const splash = document.getElementById('splashScreen');
     const mainSite = document.getElementById('mainSite');
     const btnEntrar = document.getElementById('btnEntrar');
@@ -341,6 +736,7 @@
     document.body.style.overflow = 'hidden';
     document.addEventListener("DOMContentLoaded", () => { renderizarGaleria(); renderizarQuizz(); });
 
+    // Navegação suave
     document.querySelectorAll('.nav-links a, .btn-primary, .btn-outline').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const hash = this.getAttribute('href');

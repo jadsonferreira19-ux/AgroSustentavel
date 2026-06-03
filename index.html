@@ -1,30 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Agrotóxico Sustentável | Quizz + Inovação Verde</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #f9fef7; color: #1a2e1f; line-height: 1.5; scroll-behavior: smooth; }
+        
+        /* SPLASH */
+        .splash-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0b3b1a 0%, #1c5a2d 100%);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            opacity: 1; visibility: visible;
+        }
+        .splash-overlay.hide-splash { opacity: 0; visibility: hidden; }
+        .splash-card {
+            background: rgba(255,255,255,0.97); max-width: 550px; width: 90%;
+            border-radius: 64px; padding: 48px 32px; text-align: center;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.3); animation: fadeInUp 0.7s ease;
+            border: 1px solid #c6e7b5;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .splash-card i { font-size: 4rem; color: #2b7e3a; background: #e0f2da; padding: 20px; border-radius: 80px; margin-bottom: 24px; }
+        .splash-card h1 { font-size: 2.2rem; font-weight: 800; color: #124d22; margin-bottom: 12px; }
+        .splash-card .tagline { font-size: 1rem; color: #2a6838; margin-bottom: 28px; font-weight: 500; }
+        .splash-card p { color: #2d4a2f; margin-bottom: 32px; font-size: 1rem; }
+        .splash-buttons { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+        .btn-splash { padding: 12px 32px; border-radius: 60px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; }
+        .btn-entrar { background-color: #1f6e2f; color: white; }
+        .btn-entrar:hover { background-color: #0e551e; transform: scale(1.02); }
+        .btn-saibamais { background: transparent; border: 2px solid #1f6e2f; color: #1f6e2f; }
+        .btn-saibamais:hover { background: #1f6e2f10; transform: scale(1.02); }
+        
+        /* SITE PRINCIPAL */
+        .main-site { opacity: 0; transition: opacity 0.8s ease; }
+        .main-site.visible { opacity: 1; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        
+        .header { background: linear-gradient(135deg, #d4e9d0 0%, #a9c9a3 100%); padding: 20px 0 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .nav-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .logo h1 { font-size: 1.6rem; font-weight: 800; color: #1f4f2b; }
+        .logo p { font-size: 0.75rem; font-weight: 500; color: #2a5e2e; }
+        .nav-links { display: flex; gap: 28px; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; font-weight: 600; color: #1f3b24; transition: 0.2s; font-size: 1rem; }
+        .nav-links a:hover { color: #095e1a; border-bottom: 2px solid #2b7a3b; }
+        
+        .hero { background: linear-gradient(112deg, #e1f3da 0%, #c8e6c0 100%); padding: 70px 0; border-radius: 0 0 48px 48px; margin-bottom: 40px; }
+        .hero-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; justify-content: space-between; }
+        .hero-text { flex: 1; }
+        .hero-text h2 { font-size: 2.6rem; font-weight: 800; color: #1c4d27; line-height: 1.2; margin-bottom: 20px; }
+        .hero-text .highlight { color: #217a32; border-left: 5px solid #3ba84a; padding-left: 18px; font-weight: 700; }
+        .hero-text p { font-size: 1.2rem; color: #2b482f; margin-bottom: 28px; }
+        .btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn { padding: 12px 28px; border-radius: 40px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-primary { background-color: #1f6e2f; color: white; border: none; }
+        .btn-primary:hover { background-color: #0e551e; transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 2px solid #1f6e2f; color: #1f6e2f; }
+        .hero-img { flex: 0.9; text-align: center; }
+        .hero-img img { max-width: 100%; width: 380px; border-radius: 30px; box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15); }
+        
+        section { margin: 70px 0; }
+        .section-title { text-align: center; font-size: 2rem; font-weight: 800; color: #1b4b27; margin-bottom: 48px; position: relative; }
+        .section-title:after { content: ''; width: 70px; height: 4px; background: #54b46b; display: block; margin: 12px auto 0; border-radius: 4px; }
+        
+        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
+        .card-imagem { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 12px 24px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; }
+        .card-imagem:hover { transform: translateY(-8px); box-shadow: 0 24px 40px rgba(34,139,34,0.15); }
+        .card-imagem img { width: 100%; height: 240px; object-fit: cover; transition: transform 0.4s ease; background: #e8f5e5; }
+        .card-imagem:hover img { transform: scale(1.03); }
+        .legenda { padding: 18px 16px 22px; text-align: center; background: white; }
+        .legenda h3 { font-size: 1.2rem; color: #1f6e2f; margin-bottom: 6px; }
+        
+        .projetos { background-color: #eef7ea; border-radius: 48px; padding: 50px 30px; }
+        .projeto-item { background: white; border-radius: 28px; padding: 24px; margin-bottom: 24px; box-shadow: 0 6px 14px rgba(0,0,0,0.05); }
+        
+        .impacto-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin: 40px 0; }
+        .stat { text-align: center; background: #ffffffdd; backdrop-filter: blur(4px); padding: 25px 20px; border-radius: 48px; width: 200px; border: 1px solid #bcddae; }
+        .stat-number { font-size: 2.8rem; font-weight: 800; color: #1a732f; }
+        
+        .quizz-container { background: white; border-radius: 48px; padding: 40px 30px; box-shadow: 0 20px 35px rgba(0,0,0,0.05); max-width: 900px; margin: 20px auto 0; border: 1px solid #d9efcf; }
+        .quizz-pergunta { font-size: 1.7rem; font-weight: 700; color: #124d22; margin-bottom: 28px; text-align: center; }
+        .quizz-opcoes { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+        .opcao { background: #f5fef2; border: 2px solid #cce2c4; border-radius: 60px; padding: 14px 22px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 12px; }
+        .opcao:hover { background: #e3f3db; border-color: #6bbf4a; transform: translateX(6px); }
+        .opcao.selected { background: #c8e6c0; border-color: #2b7a3b; font-weight: 700; }
+        .btn-next { background-color: #1f6e2f; color: white; border: none; padding: 14px 28px; border-radius: 60px; font-weight: bold; font-size: 1rem; cursor: pointer; display: block; margin: 0 auto; width: 220px; }
+        .btn-next:hover { background-color: #0e551e; }
+        .resultado-final { text-align: center; background: #e0f2da; border-radius: 40px; padding: 30px; margin-top: 20px; }
+        
+        footer { background: #1c3b21; color: #cfebcd; padding: 40px 0 20px; border-radius: 32px 32px 0 0; margin-top: 70px; }
+        .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; margin-bottom: 30px; }
+        .copy { text-align: center; border-top: 1px solid #2b5933; padding-top: 24px; font-size: 0.85rem; }
+        
+        @media (max-width: 780px) {
+            .hero-text h2 { font-size: 2rem; }
+            .splash-card h1 { font-size: 1.8rem; }
+            .quizz-pergunta { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
 
-## ✅ O que O que eu eu corrigi:
+<!-- PÁGINA DE ENTRADA SPLASH -->
+<div id="splashScreen" class="splash-overlay">
+    <div class="splash-card">
+        <i class="fas fa-seedling"></i>
+        <h1>🌿 Agrotóxico Sustentável</h1>
+        <div class="tagline">Inovação, equilíbrio ecológico e tecnologias verdes</div>
+        <p>Descubra como a ciência e a natureza caminham juntas para substituir químicos agressivos por biopesticidas, controle biológico e agricultura regenerativa.</p>
+        <div class="splash-buttons">
+            <button id="btnEntrar" class="btn-splash btn-entrar"><i class="fas fa-arrow-right"></i> Entrar</button>
+            <button id="btnSaibaMais" class="btn-splash btn-saibamais"><i class="fas fa-leaf"></i> Saiba Mais</button>
+        </div>
+    </div>
+</div>
 
- corrigi:
+<!-- SITE PRINCIPAL -->
+<div id="mainSite" class="main-site">
+    <header class="header">
+        <div class="container nav-bar">
+            <div class="logo">
+                <h1><i class="fas fa-leaf"></i> Agrotóxico Sustentável</h1>
+                <p>ciência + natureza = futuro vivo</p>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Início</a>
+                <a href="#galeria">Galeria</a>
+                <a href="#projetos">Tecnologias</a>
+                <a href="#impacto">Impacto</a>
+                <a href="#quizz">Quizz</a>
+            </div>
+        </div>
+    </header>
 
-|| Problema | Problema | Solução |
-| Solução |
-|----------|---------|
-| Place----------|---------|
-| Placeholdersholders feios | ** feios | **RemRemovidosovidos completamente completamente** |
-| Im** |
-| Imagens quebagens quebradas | Useradas | Usei **Picsi **Picsum** (servum** (serviço confiiço confiável que **ável que **NUNCA**NUNCA** que quebra) |
-|bra) |
-| Sem contexto Sem contexto agrícola | As agrícola | As imagens do Picsum são imagens do Picsum são de ** de **paisagenspaisagens naturais, campos naturais, campos e natureza e natureza** |
+    <main>
+        <section id="home">
+            <div class="hero">
+                <div class="container hero-grid">
+                    <div class="hero-text">
+                        <h2>Do químico ao <span class="highlight">biológico:</span> a revolução dos agrotóxicos sustentáveis</h2>
+                        <p>Biopesticidas, feromônios, extratos vegetais e microrganismos: tecnologias que protegem as lavouras sem agredir o solo, a água e a saúde.</p>
+                        <div class="btn-group">
+                            <a href="#galeria" class="btn btn-primary"><i class="fas fa-seedling"></i> Soluções verdes</a>
+                            <a href="#quizz" class="btn btn-outline"><i class="fas fa-question-circle"></i> Teste seus conhecimentos</a>
+                        </div>
+                    </div>
+                    <div class="hero-img">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 350'%3E%3Crect width='400' height='350' fill='%23c8e6c0'/%3E%3Ccircle cx='200' cy='130' r='70' fill='%234caf50'/%3E%3Cpath d='M150 210 L250 210 L230 270 L170 270 Z' fill='%233b7a3e'/%3E%3Crect x='180' y='270' width='40' height='50' fill='%238B5A2B'/%3E%3Cpath d='M100 110 L70 60 L140 60 Z' fill='%23F9A825'/%3E%3Cpath d='M300 110 L270 60 L340 60 Z' fill='%23F9A825'/%3E%3Ctext x='120' y='330' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🌱 Bioinsumos%3C/text%3E%3Ctext x='240' y='330' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🐞 Controle Biológico%3C/text%3E%3C/svg%3E"
+                             alt="Agricultura sustentável">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-** |
+        <!-- GALERIA COM SVG -->
+        <div class="container" id="galeria">
+            <div class="section-title">📸 Tecnologias de baixo impacto – na prática</div>
+            <div class="galeria-grid" id="galeriaDinamica"></div>
+            <p style="text-align:center; margin-top:10px;">💚 Práticas sustentáveis que substituem agrotóxicos convencionais.</p>
+        </div>
 
-#### 📷 As imagens agora são 📷 As imagens agora são:
+        <!-- PROJETOS -->
+        <div class="container projetos" id="projetos">
+            <div class="section-title">🧬 Alternativas ecológicas em ação</div>
+            <div class="projeto-item">
+                <h3><i class="fas fa-bacteria"></i> Biofábricas comunitárias</h3>
+                <p>Produção local de fungos e bactérias benéficas (Beauveria bassiana, Bacillus thuringiensis) que controlam pragas naturalmente, sem resíduos tóxicos.</p>
+            </div>
+            <div class="projeto-item">
+                <h3><i class="fas fa-chart-line"></i> Inteligência artificial para manejo ecológico</h3>
+                <p>Sensores e machine learning identificam focos de praga com precisão, reduzindo em 80% a necessidade de aplicações.</p>
+            </div>
+            <div class="projeto-item">
+                <h3><i class="fas fa-hand-holding-heart"></i> Selo "Agrotóxico Zero"</h3>
+                <p>Rastreabilidade com blockchain certifica produtos livres de químicos sintéticos, agregando valor ao pequeno produtor.</p>
+            </div>
+        </div>
 
-1. **:
+        <!-- IMPACTO -->
+        <div class="container" id="impacto">
+            <div class="section-title">📊 Dados da transição sustentável</div>
+            <div class="impacto-stats">
+                <div class="stat"><div class="stat-number">-67%</div><p>redução de resíduos tóxicos no solo</p></div>
+                <div class="stat"><div class="stat-number">+40%</div><p>aumento de biodiversidade</p></div>
+                <div class="stat"><div class="stat-number">2.500+</div><p>comunidades rurais capacitadas</p></div>
+            </div>
+        </div>
 
-1. **Hero principalHero principal** - P** - Paisagem agríaisagem agrícola
-cola
-2. **Gal2. **Galeria (eria (6 imagens)**6 imagens)** - Todas com tem - Todas com temática deática de campo, campo, natureza e sustentabilidade
- natureza e sustentabilidade3. **100
-3. **100% funcion% funcionais** - O Pais** - Oicsum é Picsum é um serviço estável usado um serviço estável usado por milhares de sites por milhares de sites
+        <!-- QUIZZ -->
+        <div class="container" id="quizz">
+            <div class="section-title">🌱 Quizz: Você sabe o que são agrotóxicos sustentáveis?</div>
+            <div class="quizz-container" id="quizzContainer"></div>
+        </div>
+    </main>
 
-**O
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo"><h3><i class="fas fa-leaf"></i> Agrotóxico Sustentável</h3><p>Alternativas que protegem vidas e o solo.</p></div>
+                <div class="social"><i class="fab fa-instagram"></i> <i class="fab fa-github"></i> <i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="copy"><p>© 2025 Projeto Agrinho – Tecnologia a favor da sustentabilidade 🌎</p></div>
+        </div>
+    </footer>
+</div>
 
-**O código está pronto para copiar e código está pronto para copiar e colar. colar. Não Não vai que vai quebrar.brar. Confie Confie em mim.** em mim.** 🌿 🌿
+<script>
+    // IMAGENS SVG - 100% FUNCIONAIS, NUNCA QUEBRAM
+    const imagens = [
+        {
+            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Ccircle cx='100' cy='150' r='40' fill='%234caf50'/%3E%3Ccircle cx='250' cy='150' r='40' fill='%2366bb6a'/%3E%3Ctext x='120' y='250' fill='%232d6a4f' font-size='18' font-weight='bold'%3E🐞 Controle Biológico%3C/text%3E%3C/svg%3E",
+            titulo: "Controle Biológico",
+            descricao: "Inimigos naturais combatem pragas sem veneno."
+        },
+        {
+            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Crect x='50' y='100' width='100' height='80' fill='%238B5A2B'/%3E%3Crect x='200' y='100' width='100' height='80' fill='%236b8e23'/%3E%3Ctext x='80' y='240' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🌿 Extratos Vegetais%3C/text%3E%3C/svg%3E",
+            titulo: "Bioinsumos",
+            descricao: "Extratos de plantas como nim e cravo-da-índia."
+        },
+        {
+            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Ccircle cx='200' cy='130' r='50' fill='%23388e3c'/%3E%3Crect x='150' y='200' width='100' height='40' fill='%2396622b'/%3E%3Ctext x='140' y='270' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🌳 Agrofloresta%3C/text%3E%3C/svg%3E",
+            titulo: "Agricultura Regenerativa",
+            descricao: "Sistemas agroflorestais reduzem necessidade de defensivos."
+        },
+        {
+            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Cpath d='M100 200 L300 200 L250 100 L150 100 Z' fill='%234caf50'/%3E%3Crect x='180' y='200' width='40' height='60' fill='%238B5A2B'/%3E%3Ctext x='120' y='280' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🚜 Plantio Direto%3C/text%3E%3C/svg%3E",
+            titulo: "Manejo Ecológico",
+            descricao: "Técnicas que preservam o solo e evitam erosão."
+        },
+        {
+            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Cpath d='M100 150 L150 100 L200 150 L150 200 Z' fill='%234caf50'/%3E%3Ccircle cx='250' cy='150' r='40' fill='%23F9A825'/%3E%3Ctext x='120' y='260' fill='%232d6a4f' font-size='16' font-weight='bold'%3E🧪 Pesquisa Científica%3C/text%3E%3C/svg%3E",
+            titulo: "Inovação Científica",
+            descricao: "Novas tecnologias para substituir agrotóxicos."
+        },
+        {
+            url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8f5e5'/%3E%3Crect x='80' y='120' width='80' height='100' fill='%2366bb6a'/%3E%3Crect x='220' y='120' width='80' height='100' fill='%234caf50'/%3E%3Ctext x='130' y='260' fill='%232d6a4f' font-size='16' font-weight='bold'%3E👩‍🌾 Agricultura Familiar%3C/text%3E%3C/svg%3E",
+            titulo: "Agricultura Familiar",
+            descricao: "Pequenos produtores adotando práticas sustentáveis."
+        }
+    ];
+
+    function renderizarGaleria() {
+        const container = document.getElementById("galeriaDinamica");
+        if (!container) return;
+        let html = "";
+        for (let img of imagens) {
+            html += `
+                <div class="card-imagem">
+                    <img src="${img.url}" alt="${img.titulo}" loading="lazy">
+                    <div class="legenda">
+                        <h3><i class="fas fa-camera"></i> ${img.titulo}</h3>
+                        <p>${img.descricao}</p>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    // QUIZZ
+    const perguntas = [
+        { texto: "O que são agrotóxicos sustentáveis?", opcoes: ["Produtos químicos sintéticos", "Alternativas como biopesticidas e controle biológico", "Fertilizantes nitrogenados", "Transgênicos"], correta: 1 },
+        { texto: "Qual é um exemplo de controle biológico?", opcoes: ["Glifosato", "Queimadas", "Liberação de joaninhas", "Irrigação"], correta: 2 },
+        { texto: "Benefício dos bioinsumos?", opcoes: ["Maior toxicidade", "Degradação rápida e menor impacto ambiental", "Aumento da acidez da água", "Uso exclusivo industrial"], correta: 1 },
+        { texto: "O que a agricultura regenerativa promove?", opcoes: ["Dependência de venenos", "Saúde do solo e biodiversidade", "Monocultura extensiva", "Desmatamento"], correta: 1 }
+    ];
+
+    let currentQuestion = 0;
+    let respostasUsuario = [];
+    let quizzContainer = document.getElementById('quizzContainer');
+
+    function renderizarQuizz() {
+        if (currentQuestion < perguntas.length) {
+            const q = perguntas[currentQuestion];
+            let opcoesHtml = '';
+            q.opcoes.forEach((opcao, idx) => {
+                const isSelected = (respostasUsuario[currentQuestion] === idx);
+                opcoesHtml += `<div class="opcao ${isSelected ? 'selected' : ''}" data-opcao="${idx}"><i class="fas fa-check-circle"></i> ${opcao}</div>`;
+            });
+            quizzContainer.innerHTML = `
+                <div class="quizz-pergunta">${currentQuestion+1}. ${q.texto}</div>
+                <div class="quizz-opcoes">${opcoesHtml}</div>
+                <button class="btn-next" id="nextBtn">${currentQuestion === perguntas.length-1 ? 'Ver resultado' : 'Próxima pergunta'}</button>
+            `;
+            document.querySelectorAll('.opcao').forEach(el => {
+                el.addEventListener('click', () => {
+                    respostasUsuario[currentQuestion] = parseInt(el.dataset.opcao);
+                    renderizarQuizz();
+                });
+            });
+            document.getElementById('nextBtn')?.addEventListener('click', () => {
+                if (respostasUsuario[currentQuestion] === undefined) { alert("Escolha uma alternativa!"); return; }
+                if (currentQuestion + 1 < perguntas.length) { currentQuestion++; renderizarQuizz(); } 
+                else { finalizarQuizz(); }
+            });
+        }
+    }
+
+    function finalizarQuizz() {
+        let acertos = 0;
+        perguntas.forEach((p, idx) => { if (respostasUsuario[idx] === p.correta) acertos++; });
+        let mensagem = acertos === 4 ? '🌟 Perfeito! Você é um expert!' : acertos >= 3 ? '🌱 Muito bom!' : acertos >= 2 ? '📘 Bom, mas pode aprender mais!' : '🌿 Revise as informações do site!';
+        quizzContainer.innerHTML = `
+            <div class="resultado-final">
+                <i class="fas fa-trophy" style="font-size: 3rem; color:#e6b422;"></i>
+                <h2>Você acertou ${acertos} de ${perguntas.length}</h2>
+                <p style="font-size: 1.2rem; margin: 15px 0;">${mensagem}</p>
+                <button id="refazerQuizz" style="background:#1f6e2f; color:white; border:none; padding:10px 25px; border-radius:40px; cursor:pointer;"><i class="fas fa-redo-alt"></i> Refazer quizz</button>
+            </div>
+        `;
+        document.getElementById('refazerQuizz')?.addEventListener('click', () => { currentQuestion = 0; respostasUsuario = []; renderizarQuizz(); });
+    }
+
+    // SPLASH
+    const splash = document.getElementById('splashScreen');
+    const mainSite = document.getElementById('mainSite');
+    const btnEntrar = document.getElementById('btnEntrar');
+    const btnSaibaMais = document.getElementById('btnSaibaMais');
+
+    function entrarNoSite() {
+        splash.classList.add('hide-splash');
+        mainSite.classList.add('visible');
+        document.body.style.overflow = 'auto';
+        setTimeout(() => splash.style.display = 'none', 700);
+    }
+
+    if (btnEntrar) btnEntrar.addEventListener('click', entrarNoSite);
+    if (btnSaibaMais) btnSaibaMais.addEventListener('click', () => { entrarNoSite(); setTimeout(() => document.getElementById('projetos')?.scrollIntoView({ behavior: 'smooth' }), 800); });
+
+    document.body.style.overflow = 'hidden';
+    document.addEventListener("DOMContentLoaded", () => { renderizarGaleria(); renderizarQuizz(); });
+
+    document.querySelectorAll('.nav-links a, .btn-primary, .btn-outline').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const hash = this.getAttribute('href');
+            if (hash?.startsWith('#')) {
+                e.preventDefault();
+                const target = document.getElementById(hash.substring(1));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                else if (hash === "#home") window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+</body>
+</html>

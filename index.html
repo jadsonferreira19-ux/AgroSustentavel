@@ -461,6 +461,10 @@
             width: 220px;
         }
 
+        .btn-next:hover {
+            background-color: #0e551e;
+        }
+
         .resultado-final {
             text-align: center;
             background: #e0f2da;
@@ -554,7 +558,7 @@
             </div>
         </section>
 
-        <!-- GALERIA COM APENAS 3 IMAGENS REAIS DE AGRICULTURA (BANCO PEXELS) -->
+        <!-- GALERIA COM 3 IMAGENS REAIS DO BANCO PEXELS (AGRICULTURA) -->
         <div class="container" id="galeria">
             <div class="section-title">📸 Tecnologias de baixo impacto – na prática</div>
             <div class="galeria-grid" id="galeriaDinamica"></div>
@@ -607,22 +611,22 @@
 </div>
 
 <script>
-    // ========== APENAS 3 IMAGENS REAIS DO BANCO PEXELS (AGRICULTURA SUSTENTÁVEL) ==========
-    // Imagens de alta qualidade relacionadas ao tema
+    // ========== 3 IMAGENS REAIS DO BANCO PEXELS (AGRICULTURA SUSTENTÁVEL) ==========
+    // Imagens de alta qualidade, diretamente relacionadas ao tema
     const imagens = [
         {
-            url: "https://images.pexels.com/photos/2447568/pexels-photo-2447568.jpeg?auto=compress&cs=tinysrgb&w=600",
-            titulo: "Plantio direto e conservação do solo",
-            descricao: "Técnica que mantém palha sobre o solo, reduz erosão e elimina necessidade de herbicidas."
+            url: "https://images.pexels.com/photos/2352905/pexels-photo-2352905.jpeg?auto=compress&cs=tinysrgb&w=600",
+            titulo: "Tecnologia no campo",
+            descricao: "Monitoramento agrícola com drones para aplicação precisa de bioinsumos."
         },
         {
             url: "https://images.pexels.com/photos/1845347/pexels-photo-1845347.jpeg?auto=compress&cs=tinysrgb&w=600",
-            titulo: "Controle biológico com joaninhas",
-            descricao: "Predadores naturais substituem inseticidas químicos no controle de pulgões."
+            titulo: "Controle biológico",
+            descricao: "Predadores naturais (joaninhas) substituem inseticidas químicos nas lavouras."
         },
         {
             url: "https://images.pexels.com/photos/5462812/pexels-photo-5462812.jpeg?auto=compress&cs=tinysrgb&w=600",
-            titulo: "Agrofloresta e biodiversidade",
+            titulo: "Agrofloresta sustentável",
             descricao: "Sistemas agroflorestais reduzem pragas naturalmente e melhoram o solo."
         }
     ];
@@ -634,7 +638,7 @@
         for (let img of imagens) {
             html += `
                 <div class="card-imagem">
-                    <img src="${img.url}" alt="${img.titulo}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/4caf50/ffffff?text=Imagem+Agricultura'">
+                    <img src="${img.url}" alt="${img.titulo}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/4caf50/ffffff?text=Agricultura+Sustentável'">
                     <div class="legenda">
                         <h3><i class="fas fa-camera"></i> ${img.titulo}</h3>
                         <p>${img.descricao}</p>

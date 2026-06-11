@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agrinho 2026 - Agro forte, futuro sustentável</title>
     <style>
+        /* ============================================
+           RESET E VARIÁVEIS GLOBAIS
+           ============================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Variáveis CSS para facilitar manutenção de cores */
         :root {
             --bg-light: #f0f7e8;
             --card-light: #ffffff;
@@ -21,6 +25,7 @@
             --orange-warning: #f5a623;
         }
 
+        /* Estilos base do body com gradiente suave */
         body {
             font-family: 'Segoe UI', 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #e8f5e6 0%, #d4e8cc 100%);
@@ -28,6 +33,9 @@
             transition: all 0.3s ease;
         }
 
+        /* ============================================
+           TEMA ESCURO - Sobrescreve cores para modo noturno
+           ============================================ */
         body.dark {
             background: linear-gradient(135deg, #0d2818 0%, #1a2f1f 100%);
             color: #e8f0e4;
@@ -51,19 +59,23 @@
             background: #3a6a4e;
         }
 
+        /* Container centralizado com largura máxima responsiva */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Header */
+        /* ============================================
+           HEADER / CABEÇALHO - Animado e atraente
+           ============================================ */
         .header {
             text-align: center;
             margin-bottom: 30px;
             animation: slideDown 0.6s ease;
         }
 
+        /* Animação de entrada suave */
         @keyframes slideDown {
             from {
                 opacity: 0;
@@ -75,6 +87,7 @@
             }
         }
 
+        /* Título principal com gradiente e animação pulsante */
         .header h1 {
             font-size: 3rem;
             background: linear-gradient(135deg, #2e7d32, #66bb6a, #4caf50);
@@ -95,6 +108,7 @@
             font-weight: 500;
         }
 
+        /* Badge do instrutor com efeito glassmorphism */
         .instructor {
             display: inline-flex;
             align-items: center;
@@ -106,7 +120,9 @@
             backdrop-filter: blur(5px);
         }
 
-        /* Grid principal */
+        /* ============================================
+           GRID PRINCIPAL - Layout de duas colunas
+           ============================================ */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
@@ -114,13 +130,16 @@
             margin: 30px 0;
         }
 
+        /* Responsividade: empilha colunas em telas menores */
         @media (max-width: 800px) {
             .main-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Cards */
+        /* ============================================
+           CARDS - Estilo comum para informações e quiz
+           ============================================ */
         .info-card, .quiz-card {
             background: white;
             border-radius: 24px;
@@ -129,10 +148,12 @@
             transition: transform 0.3s ease;
         }
 
+        /* Efeito hover elevando o card */
         .info-card:hover, .quiz-card:hover {
             transform: translateY(-5px);
         }
 
+        /* Títulos das seções com borda lateral verde */
         .section-title {
             font-size: 1.5rem;
             margin: 20px 0 15px 0;
@@ -144,12 +165,15 @@
             margin-top: 0;
         }
 
-        /* Listas */
+        /* ============================================
+           LISTAS DE PONTOS POSITIVOS E NEGATIVOS
+           ============================================ */
         .positive-list, .negative-list {
             list-style: none;
             margin: 10px 0;
         }
 
+        /* Ícones via pseudo-elementos para melhor performance */
         .positive-list li, .negative-list li {
             padding: 8px 0 8px 28px;
             position: relative;
@@ -167,6 +191,7 @@
             left: 0;
         }
 
+        /* Caixa de destaque para o caminho sustentável */
         .sustainable-box {
             background: #e8f5e9;
             padding: 15px;
@@ -178,7 +203,9 @@
             background: #2a4a38;
         }
 
-        /* Quiz */
+        /* ============================================
+           ESTILOS DO QUIZ
+           ============================================ */
         .question-number {
             display: inline-block;
             background: #4caf50;
@@ -196,6 +223,7 @@
             line-height: 1.3;
         }
 
+        /* Container das opções de resposta */
         .options {
             display: flex;
             flex-direction: column;
@@ -203,6 +231,7 @@
             margin: 20px 0;
         }
 
+        /* Botão de opção individual */
         .option {
             background: #f5faf2;
             border: 2px solid #c8e6b5;
@@ -218,6 +247,7 @@
             transform: translateX(5px);
         }
 
+        /* Opção selecionada pelo usuário */
         .option.selected {
             background: #c8e6b5;
             border-color: #4caf50;
@@ -229,6 +259,7 @@
             border-color: #66bb6a;
         }
 
+        /* Feedback de explicação após resposta */
         .feedback {
             background: #e8f5e9;
             padding: 12px 18px;
@@ -242,6 +273,9 @@
             background: #2a4a38;
         }
 
+        /* ============================================
+           BOTÕES DE NAVEGAÇÃO DO QUIZ
+           ============================================ */
         .quiz-buttons {
             display: flex;
             justify-content: space-between;
@@ -291,7 +325,9 @@
             border-color: #a5d6a7;
         }
 
-        /* Resultado */
+        /* ============================================
+           TELA DE RESULTADOS
+           ============================================ */
         .result-area {
             text-align: center;
         }
@@ -327,7 +363,9 @@
             color: #ff9800;
         }
 
-        /* Footer */
+        /* ============================================
+           FOOTER / RODAPÉ
+           ============================================ */
         footer {
             background: white;
             border-radius: 20px;
@@ -354,7 +392,9 @@
             color: #4caf50;
         }
 
-        /* Botão tema */
+        /* ============================================
+           BOTÕES FLUTUANTES - Tema e Controle de Som
+           ============================================ */
         .theme-toggle {
             position: fixed;
             bottom: 20px;
@@ -370,7 +410,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        /* Botão mutar sons */
         .sound-toggle {
             position: fixed;
             bottom: 20px;
@@ -390,6 +429,7 @@
             background: #e68a2e;
         }
 
+        /* Ajuste responsivo para botões flutuantes em telas pequenas */
         @media (max-width: 600px) {
             .sound-toggle {
                 right: 100px;
@@ -402,7 +442,7 @@
             }
         }
 
-        /* Animações */
+        /* Animação de fade-in para transições suaves */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -415,7 +455,9 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
+        <!-- ============================================
+             HEADER - Cabeçalho com título e instrutor
+             ============================================ -->
         <div class="header">
             <h1>🌾 AGRINHO 2026</h1>
             <div class="tagline">Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente.</div>
@@ -425,9 +467,11 @@
             </div>
         </div>
 
-        <!-- Grid principal -->
+        <!-- ============================================
+             GRID PRINCIPAL - Duas colunas: Informações + Quiz
+             ============================================ -->
         <div class="main-grid">
-            <!-- Coluna esquerda - Informações -->
+            <!-- COLUDA ESQUERDA: Painel informativo sobre agrotóxicos e sustentabilidade -->
             <div class="info-card">
                 <div class="section-title">🌱 O que são agrotóxicos?</div>
                 <p>São produtos utilizados para proteger as plantações de pragas, doenças e plantas daninhas, ajudando a garantir a produção de alimentos.</p>
@@ -461,13 +505,15 @@
                 </div>
             </div>
 
-            <!-- Coluna direita - Quiz -->
+            <!-- COLUNA DIREITA: Área dinâmica do Quiz (renderizada via JavaScript) -->
             <div class="quiz-card" id="quizCard">
                 <div id="quizContent"></div>
             </div>
         </div>
 
-        <!-- Footer -->
+        <!-- ============================================
+             RODAPÉ COM LINKS DE NAVEGAÇÃO
+             ============================================ -->
         <footer>
             <div class="nav-links">
                 <span>🌾 Início</span>
@@ -480,14 +526,24 @@
         </footer>
     </div>
 
+    <!-- ============================================
+         BOTÕES FLUTUANTES
+         ============================================ -->
     <button class="theme-toggle" id="themeToggle">🌓 Modo Escuro/Claro</button>
     <button class="sound-toggle" id="soundToggle">🔊 Sons: Ligados</button>
 
     <script>
-        // ==================== SISTEMA DE SONS ====================
+        // ============================================
+        // SISTEMA DE SONS - Web Audio API
+        // ============================================
+        
+        // Variável de controle: true = sons ativados, false = sons mutados
         let soundEnabled = true;
         
-        // Criar sons usando Web Audio API (sem arquivos externos)
+        /**
+         * Toca um som de "acerto" (frequência alta e agradável)
+         * Utiliza Web Audio API para gerar o som programaticamente, sem arquivos externos
+         */
         function playCorrectSound() {
             if (!soundEnabled) return;
             try {
@@ -498,22 +554,25 @@
                 oscillator.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
                 
-                oscillator.frequency.value = 880; // Nota Lá5
-                gainNode.gain.value = 0.15;
+                oscillator.frequency.value = 880; // Nota Lá5 - som agudo e feliz
+                gainNode.gain.value = 0.15;      // Volume moderado
                 
                 oscillator.start();
                 gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.5);
                 oscillator.stop(audioCtx.currentTime + 0.5);
                 
-                // Resumo do contexto se estiver suspenso
+                // Resume o contexto se estiver suspenso (necessário devido a políticas de navegador)
                 if (audioCtx.state === 'suspended') {
                     audioCtx.resume();
                 }
             } catch(e) {
-                console.log("Audio API não suportada");
+                console.log("Audio API não suportada ou erro:", e);
             }
         }
         
+        /**
+         * Toca um som de "erro" (frequência mais grave, tom descendente)
+         */
         function playWrongSound() {
             if (!soundEnabled) return;
             try {
@@ -524,7 +583,7 @@
                 oscillator.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
                 
-                oscillator.frequency.value = 440; // Nota Lá4
+                oscillator.frequency.value = 440; // Nota Lá4 - mais grave
                 gainNode.gain.value = 0.15;
                 
                 oscillator.start();
@@ -539,6 +598,9 @@
             }
         }
         
+        /**
+         * Toca um som curto de "seleção" ao clicar em uma opção
+         */
         function playSelectSound() {
             if (!soundEnabled) return;
             try {
@@ -564,12 +626,15 @@
             }
         }
         
+        /**
+         * Toca uma pequena melodia quando o quiz é finalizado
+         */
         function playFinishSound() {
             if (!soundEnabled) return;
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                // Melodia de conclusão
-                const frequencies = [523.25, 659.25, 783.99, 1046.50];
+                // Sequência de notas para um som de conquista
+                const frequencies = [523.25, 659.25, 783.99, 1046.50]; // Dó, Mi, Sol, Dó
                 let time = 0;
                 frequencies.forEach((freq, i) => {
                     const oscillator = audioCtx.createOscillator();
@@ -592,21 +657,25 @@
             }
         }
         
-        // Gerenciar estado do som
+        // ============================================
+        // CONTROLE DO BOTÃO DE MUTAR SONS
+        // ============================================
         const soundToggleBtn = document.getElementById('soundToggle');
         soundToggleBtn.addEventListener('click', () => {
             soundEnabled = !soundEnabled;
+            // Atualiza o texto do botão para indicar o estado atual
             soundToggleBtn.textContent = soundEnabled ? '🔊 Sons: Ligados' : '🔇 Sons: Mutado';
             
-            // Pequeno feedback visual
+            // Pequeno feedback visual de clique
             soundToggleBtn.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 soundToggleBtn.style.transform = '';
             }, 150);
         });
         
-        // ==================== QUIZ ====================
-        // Questões do quiz (baseado nas imagens)
+        // ============================================
+        // DADOS DO QUIZ - Array com perguntas, opções e respostas corretas
+        // ============================================
         const questions = [
             {
                 text: "Qual é o principal objetivo da agricultura sustentável?",
@@ -616,7 +685,7 @@
                     "c) Usar mais máquinas possíveis",
                     "d) Diminuir toda produção agrícola"
                 ],
-                correct: 1,
+                correct: 1, // índice da opção correta (0-based)
                 explanation: "✅ Resposta correta: Equilibrar produção e preservação ambiental. A agricultura sustentável busca harmonia entre produtividade e respeito à natureza."
             },
             {
@@ -665,12 +734,18 @@
             }
         ];
 
-        let currentQuestion = 0;
-        let answers = new Array(questions.length).fill(null);
-        let quizFinished = false;
+        // ============================================
+        // ESTADO DO QUIZ
+        // ============================================
+        let currentQuestion = 0;           // Índice da pergunta atual
+        let answers = new Array(questions.length).fill(null); // Array com respostas do usuário (null = não respondida)
+        let quizFinished = false;           // Flag indicando se o quiz foi finalizado
 
         const quizContent = document.getElementById('quizContent');
 
+        /**
+         * Função principal de renderização - decide se mostra pergunta ou resultado
+         */
         function renderQuiz() {
             if (quizFinished || (answers.every(a => a !== null) && currentQuestion >= questions.length)) {
                 showResults();
@@ -684,16 +759,22 @@
             }
         }
 
+        /**
+         * Renderiza uma pergunta específica com suas opções e feedback
+         * @param {number} index - Índice da pergunta a ser exibida
+         */
         function showQuestion(index) {
             const q = questions[index];
             const selected = answers[index];
             
+            // Gera HTML das opções, marcando a que está selecionada (se houver)
             let optionsHtml = '';
             q.options.forEach((opt, i) => {
                 const selectedClass = selected === i ? 'selected' : '';
                 optionsHtml += `<div class="option ${selectedClass}" data-opt="${i}">${opt}</div>`;
             });
 
+            // Exibe feedback se o usuário já respondeu esta questão
             const feedbackHtml = selected !== null 
                 ? `<div class="feedback">📖 ${q.explanation}</div>`
                 : '<div class="feedback">💡 Selecione uma opção para continuar</div>';
@@ -718,40 +799,42 @@
 
             quizContent.innerHTML = html;
 
-            // Adicionar eventos às opções
+            // ========================================
+            // EVENTO DE CLIQUE NAS OPÇÕES
+            // ========================================
             document.querySelectorAll('.option').forEach(opt => {
                 opt.addEventListener('click', (e) => {
                     const optIndex = parseInt(opt.dataset.opt);
-                    const wasAlreadySelected = answers[index] !== null;
-                    const oldAnswer = answers[index];
                     
-                    answers[index] = optIndex;
-                    
-                    // Tocar som de seleção ao escolher uma opção
+                    // Toca som de seleção ao clicar
                     playSelectSound();
                     
-                    // Se a resposta mudou e agora está correta/incorreta, tocar som apropriado
+                    // Verifica se a resposta está correta para tocar som específico
                     const isCorrect = (optIndex === q.correct);
                     if (isCorrect) {
                         playCorrectSound();
                     } else {
-                        // Se for resposta errada, toca som de erro
                         playWrongSound();
                     }
                     
+                    // Atualiza o array de respostas e re-renderiza a mesma pergunta
+                    answers[index] = optIndex;
                     showQuestion(index);
                 });
             });
 
-            // Botão próximo
+            // ========================================
+            // BOTÃO PRÓXIMO / FINALIZAR
+            // ========================================
             document.getElementById('nextBtn')?.addEventListener('click', () => {
+                // Valida se o usuário respondeu antes de prosseguir
                 if (answers[index] === null) {
                     alert('⚠️ Por favor, selecione uma resposta antes de continuar!');
                     return;
                 }
                 if (index === questions.length - 1) {
                     quizFinished = true;
-                    playFinishSound(); // Som de conclusão do quiz
+                    playFinishSound(); // Toca melodia de conclusão
                     renderQuiz();
                 } else {
                     currentQuestion++;
@@ -759,7 +842,9 @@
                 }
             });
 
-            // Botão anterior
+            // ========================================
+            // BOTÃO ANTERIOR
+            // ========================================
             document.getElementById('prevBtn')?.addEventListener('click', () => {
                 if (index > 0) {
                     currentQuestion--;
@@ -767,11 +852,17 @@
                 }
             });
 
-            // Botão reset
+            // ========================================
+            // BOTÃO REINICIAR (dentro do quiz)
+            // ========================================
             document.getElementById('resetBtn')?.addEventListener('click', resetQuiz);
         }
 
+        /**
+         * Exibe a tela de resultados com pontuação e detalhes das respostas
+         */
         function showResults() {
+            // Calcula quantidade de acertos
             let correctCount = 0;
             questions.forEach((q, i) => {
                 if (answers[i] === q.correct) correctCount++;
@@ -779,12 +870,14 @@
 
             const percent = Math.round((correctCount / questions.length) * 100);
             
+            // Mensagem motivacional baseada no desempenho
             let message = '';
             if (percent === 100) message = '🌟 PERFEITO! Você é um expert em sustentabilidade! 🌟';
             else if (percent >= 80) message = '🌻 Muito bem! Continue assim, o futuro do campo agradece!';
             else if (percent >= 60) message = '🍃 Bom trabalho! Revise os pontos importantes para ir além.';
             else message = '🌱 Continue estudando! O equilíbrio entre produção e meio ambiente é essencial.';
 
+            // Gera detalhamento de cada questão
             let detailsHtml = '';
             questions.forEach((q, i) => {
                 const isCorrect = answers[i] === q.correct;
@@ -817,6 +910,9 @@
             document.getElementById('restartQuizBtn')?.addEventListener('click', resetQuiz);
         }
 
+        /**
+         * Reinicia completamente o quiz: zera respostas e volta para primeira pergunta
+         */
         function resetQuiz() {
             currentQuestion = 0;
             answers = new Array(questions.length).fill(null);
@@ -824,8 +920,14 @@
             renderQuiz();
         }
 
-        // Tema escuro/claro
+        // ============================================
+        // SISTEMA DE TEMA ESCURO/CLARO COM PERSISTÊNCIA
+        // ============================================
         const themeToggle = document.getElementById('themeToggle');
+        
+        /**
+         * Carrega a preferência de tema salva no localStorage
+         */
         function loadTheme() {
             const saved = localStorage.getItem('agrinhoTheme');
             if (saved === 'dark') {
@@ -833,6 +935,7 @@
             }
         }
 
+        // Alterna o tema e salva a preferência
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark');
             if (document.body.classList.contains('dark')) {
@@ -842,11 +945,16 @@
             }
         });
 
-        loadTheme();
-        renderQuiz();
+        // ============================================
+        // INICIALIZAÇÃO
+        // ============================================
+        loadTheme();    // Aplica tema salvo
+        renderQuiz();   // Inicia o quiz
         
-        // Pré-inicializar o AudioContext para evitar atrasos no primeiro som
-        // Isso também ajuda a garantir que o navegador permita áudio após interação do usuário
+        /**
+         * Pré-inicializa o AudioContext para evitar atrasos no primeiro som
+         * Além disso, garante que o navegador permita áudio após interação do usuário
+         */
         document.body.addEventListener('click', function initAudio() {
             try {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -854,6 +962,7 @@
                     ctx.resume();
                 }
             } catch(e) {}
+            // Remove o listener após a primeira interação
             document.body.removeEventListener('click', initAudio);
         }, { once: true });
     </script>

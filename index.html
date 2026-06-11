@@ -370,6 +370,38 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
+        /* Botão mutar sons */
+        .sound-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 160px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark .sound-toggle {
+            background: #e68a2e;
+        }
+
+        @media (max-width: 600px) {
+            .sound-toggle {
+                right: 100px;
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+            .theme-toggle {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
         /* Animações */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -449,8 +481,131 @@
     </div>
 
     <button class="theme-toggle" id="themeToggle">🌓 Modo Escuro/Claro</button>
+    <button class="sound-toggle" id="soundToggle">🔊 Sons: Ligados</button>
 
     <script>
+        // ==================== SISTEMA DE SONS ====================
+        let soundEnabled = true;
+        
+        // Criar sons usando Web Audio API (sem arquivos externos)
+        function playCorrectSound() {
+            if (!soundEnabled) return;
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.frequency.value = 880; // Nota Lá5
+                gainNode.gain.value = 0.15;
+                
+                oscillator.start();
+                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.5);
+                oscillator.stop(audioCtx.currentTime + 0.5);
+                
+                // Resumo do contexto se estiver suspenso
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch(e) {
+                console.log("Audio API não suportada");
+            }
+        }
+        
+        function playWrongSound() {
+            if (!soundEnabled) return;
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.frequency.value = 440; // Nota Lá4
+                gainNode.gain.value = 0.15;
+                
+                oscillator.start();
+                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.4);
+                oscillator.stop(audioCtx.currentTime + 0.4);
+                
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch(e) {
+                console.log("Audio API não suportada");
+            }
+        }
+        
+        function playSelectSound() {
+            if (!soundEnabled) return;
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.frequency.value = 660; // Nota Mi5
+                gainNode.gain.value = 0.08;
+                
+                oscillator.start();
+                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.2);
+                oscillator.stop(audioCtx.currentTime + 0.2);
+                
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch(e) {
+                console.log("Audio API não suportada");
+            }
+        }
+        
+        function playFinishSound() {
+            if (!soundEnabled) return;
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                // Melodia de conclusão
+                const frequencies = [523.25, 659.25, 783.99, 1046.50];
+                let time = 0;
+                frequencies.forEach((freq, i) => {
+                    const oscillator = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+                    oscillator.frequency.value = freq;
+                    gainNode.gain.value = 0.12;
+                    const startTime = audioCtx.currentTime + (i * 0.12);
+                    oscillator.start(startTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.00001, startTime + 0.3);
+                    oscillator.stop(startTime + 0.3);
+                });
+                
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch(e) {
+                console.log("Audio API não suportada");
+            }
+        }
+        
+        // Gerenciar estado do som
+        const soundToggleBtn = document.getElementById('soundToggle');
+        soundToggleBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            soundToggleBtn.textContent = soundEnabled ? '🔊 Sons: Ligados' : '🔇 Sons: Mutado';
+            
+            // Pequeno feedback visual
+            soundToggleBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                soundToggleBtn.style.transform = '';
+            }, 150);
+        });
+        
+        // ==================== QUIZ ====================
         // Questões do quiz (baseado nas imagens)
         const questions = [
             {
@@ -567,7 +722,23 @@
             document.querySelectorAll('.option').forEach(opt => {
                 opt.addEventListener('click', (e) => {
                     const optIndex = parseInt(opt.dataset.opt);
+                    const wasAlreadySelected = answers[index] !== null;
+                    const oldAnswer = answers[index];
+                    
                     answers[index] = optIndex;
+                    
+                    // Tocar som de seleção ao escolher uma opção
+                    playSelectSound();
+                    
+                    // Se a resposta mudou e agora está correta/incorreta, tocar som apropriado
+                    const isCorrect = (optIndex === q.correct);
+                    if (isCorrect) {
+                        playCorrectSound();
+                    } else {
+                        // Se for resposta errada, toca som de erro
+                        playWrongSound();
+                    }
+                    
                     showQuestion(index);
                 });
             });
@@ -580,6 +751,7 @@
                 }
                 if (index === questions.length - 1) {
                     quizFinished = true;
+                    playFinishSound(); // Som de conclusão do quiz
                     renderQuiz();
                 } else {
                     currentQuestion++;
@@ -672,6 +844,18 @@
 
         loadTheme();
         renderQuiz();
+        
+        // Pré-inicializar o AudioContext para evitar atrasos no primeiro som
+        // Isso também ajuda a garantir que o navegador permita áudio após interação do usuário
+        document.body.addEventListener('click', function initAudio() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                if (ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+            } catch(e) {}
+            document.body.removeEventListener('click', initAudio);
+        }, { once: true });
     </script>
 </body>
 </html>
